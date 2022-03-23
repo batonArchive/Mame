@@ -7,7 +7,11 @@ declare global {
   }
 }
 
-export const ethersProvider = new ethers.providers.Web3Provider(window.ethereum);
+const ethersProvider = typeof window === "object" ? new ethers.providers.Web3Provider(window.ethereum) : null
+
+export const getEthersProvider = (): ethers.providers.Web3Provider => {
+  return ethersProvider!
+}
 
 export const getAccount = async (): Promise<string> => {
   const accounts = await window.ethereum.request({method: "eth_requestAccounts"})
@@ -15,5 +19,5 @@ export const getAccount = async (): Promise<string> => {
 }
 
 export const signMessage = (message: string): Promise<string> => {
-  return ethersProvider.getSigner().signMessage(message)
+  return getEthersProvider().getSigner().signMessage(message)
 }
