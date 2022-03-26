@@ -25,13 +25,13 @@ const button: ComponentStyleConfig = {
           color: "text.black",
           background: `${props.colorScheme}.500`,
           _hover: {
-            background: `${props.colorScheme}.600`,
+            background: `${props.colorScheme}.400`,
             _disabled: {
               background: `${props.colorScheme}.500`
             },
           },
           _active: {
-            background: `${props.colorScheme}.700`,
+            background: `${props.colorScheme}.300`,
           },
         }
       }

@@ -1,7 +1,5 @@
 import { Box, Button, Flex, FlexProps, IconButton } from "@chakra-ui/react"
 import { ReactNode } from "react"
-import NextLink from "next/link"
-import { FaUser } from "react-icons/fa"
 
 
 type Props = {
