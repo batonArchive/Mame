@@ -8,7 +8,7 @@ import { FaChevronLeft, FaCog } from "react-icons/fa"
 import NextLink from "next/link"
 import { useRouter } from "next/router"
 import { updateProfile } from "../repositories/update-profile"
-import { profiles } from "../repositories/get-profiles"
+import { getProfile } from "../repositories/get-profiles"
 
 
 type Props = {}

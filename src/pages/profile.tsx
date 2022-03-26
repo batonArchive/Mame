@@ -10,7 +10,7 @@ import { PlusButton } from "../components/plusButton"
 
 type Props = {}
 
-const HomePage: NextPage<Props> = () => {
+const ProfilePage: NextPage<Props> = () => {
   useEffect(() => {
     console.log("try to login")
     // login()
@@ -55,4 +55,4 @@ const HomePage: NextPage<Props> = () => {
   )
 }
 
-export default HomePage
+export default ProfilePage
