@@ -8,6 +8,7 @@ import NextLink from "next/link"
 import { PlusButton } from "../components/plusButton"
 import { updateProfile } from "../repositories/update-profile"
 import { Header } from "../components/header"
+import { MemePane } from "../components/memePane"
 
 
 type Props = {}
@@ -41,10 +42,7 @@ const ProfilePage: NextPage<Props> = () => {
       </Box>
       <SimpleGrid mt={4} gap={2} templateColumns="repeat(2, 1fr)">
         {Array.from({length: 20}).map((dummy, index) => (
-          <AspectRatio ratio={1} key={index}>
-            <Box rounded="lg" backgroundImage={`url('https://source.unsplash.com/random?sig=${index}')`} backgroundSize="cover">              
-            </Box>
-          </AspectRatio>
+          <MemePane key={index} imageUrl={`https://source.unsplash.com/random?sig=${index}`} text={"Hello!\nHello, hello, hello!\nVery much hello!\nHello!\nFifth"}/>
         ))}
       </SimpleGrid>
       <PlusButton/>
