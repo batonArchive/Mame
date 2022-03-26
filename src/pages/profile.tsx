@@ -1,6 +1,7 @@
 import React, { useEffect } from "react"
 import { NextPage } from "next"
 import { login } from "../repositories/login"
+import { getTimeline } from "../repositories/get-timeline"
 import { AppContainer } from "../components/appContainer"
 import { AspectRatio, Avatar, Box, Button, Flex, IconButton, SimpleGrid, Text } from "@chakra-ui/react"
 import { FaChevronLeft, FaCog } from "react-icons/fa"
@@ -12,8 +13,14 @@ type Props = {}
 
 const HomePage: NextPage<Props> = () => {
   useEffect(() => {
-    console.log("try to login")
-    // login()
+    console.log("try to login");
+
+
+    (
+   async () => {
+    await login()
+    await getTimeline("");
+   })();
   }, [])
 
   return (

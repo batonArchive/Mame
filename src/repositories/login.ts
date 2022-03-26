@@ -50,5 +50,6 @@ export const login = async () => {
   const accessTokens = await authenticate(address, signature);
   localStorage.setItem('auth_token', accessTokens.data.authenticate.accessToken);
   localStorage.setItem('refresh_token', accessTokens.data.authenticate.refreshToken);
+
   return accessTokens.data.authenticate;
 };
