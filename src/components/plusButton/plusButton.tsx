@@ -30,8 +30,12 @@ export const PlusButton: React.FC<Props> = ({
       <Menu placement="left-end">
         <MenuButton as={IconButton} icon={<FaPlus/>} size="lg" rounded="full" boxShadow="md" colorScheme="primary" aria-label="create"/>
         <MenuList>
-          <MenuItem icon={<FaPlus/>} onClick={handleAddImage}>Add an image</MenuItem>
-          <MenuItem icon={<FaSearch/>} onClick={handleSelectImage}>Select an image</MenuItem>
+          <MenuItem icon={<Box color="primary.main"><FaPlus/></Box>} onClick={handleAddImage}>
+            Add an image
+          </MenuItem>
+          <MenuItem icon={<Box color="primary.main"><FaSearch/></Box>} onClick={handleSelectImage}>
+            Select an image
+          </MenuItem>
         </MenuList>
       </Menu>
       <input type="file" accept="image/*" ref={inputRef} style={{display: "none"}} onChange={handleFileChange}/>

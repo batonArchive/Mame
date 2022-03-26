@@ -11,6 +11,7 @@ export const colors: Colors = {
     main: "#1F2128",
     header: "#2E313B",
     black: "#000000",
+    white: "#FFFFFF",
   },
 
   primary: {
