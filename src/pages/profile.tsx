@@ -16,18 +16,7 @@ const ProfilePage: NextPage<Props> = () => {
   useEffect(() => {
 
     console.log("try to login");
-
-    (
-   async () => {
-    
-
-    await updateProfile();
-
-    const id = localStorage.getItem('profile_id');
-
-    console.log(id);
-    await getTimeline(id!);
-   })();
+    ();
     
   }, [])
 
