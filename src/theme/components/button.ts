@@ -4,19 +4,38 @@ import { transparentize } from "@chakra-ui/theme-tools"
 
 const button: ComponentStyleConfig = {
   variants: {
-    solid: (props) => ({
-      color: "text.black",
-      background: `${props.colorScheme}.500`,
-      _hover: {
-        background: `${props.colorScheme}.600`,
-        _disabled: {
-          background: `${props.colorScheme}.500`
-        },
-      },
-      _active: {
-        background: `${props.colorScheme}.700`,
-      },
-    }),
+    solid: (props) => {
+      const {colorScheme} = props
+      if (colorScheme === "white") {
+        return {
+          color: "text.black",
+          background: `gray.50`,
+          _hover: {
+            background: `gray.100`,
+            _disabled: {
+              background: `gray.50`
+            },
+          },
+          _active: {
+            background: `gray.200`,
+          },
+        }
+      } else {
+        return {
+          color: "text.black",
+          background: `${props.colorScheme}.500`,
+          _hover: {
+            background: `${props.colorScheme}.600`,
+            _disabled: {
+              background: `${props.colorScheme}.500`
+            },
+          },
+          _active: {
+            background: `${props.colorScheme}.700`,
+          },
+        }
+      }
+    },
     ghost: (props) => ({
       color: "inherit",
       bg: "transparent",

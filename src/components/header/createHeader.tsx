@@ -19,7 +19,7 @@ export const CreateHeader: React.FC<Props> = ({
         </NextLink>
       </Box>
       <Box>
-        <Button size="sm" onClick={onPostClick}>Post</Button>
+        <Button size="sm" colorScheme="white" onClick={onPostClick}>Post</Button>
       </Box>
     </Flex>
   )
