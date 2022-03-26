@@ -17,7 +17,7 @@ export const PlusButton: React.FC<Props> = ({
   
   const handleSelectImage = useCallback(() => {
     router.push("/select")
-  }, [])
+  }, [router])
 
   return (
     <Box position="fixed" right={4} bottom={4}>
