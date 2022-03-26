@@ -7,17 +7,14 @@ import { FaChevronLeft, FaCog } from "react-icons/fa"
 import NextLink from "next/link"
 import { PlusButton } from "../components/plusButton"
 import { updateProfile } from "../repositories/update-profile"
+import { Header } from "../components/header"
 
 
 type Props = {}
 
 const ProfilePage: NextPage<Props> = () => {
-  useEffect(() => {
-    updateProfile()
-  }, [])
-
   return (
-    <AppContainer>
+    <AppContainer headerNode={<Header/>}>
       <Flex mb={-2} justify="space-between">
         <NextLink href="/" passHref={true}>
           <IconButton icon={<FaChevronLeft/>} size="sm" variant="ghost" aria-label="back"/>

@@ -11,7 +11,9 @@ import { updateProfile } from "../repositories/update-profile"
 import { getProfile } from "../repositories/get-profiles"
 import { createPost } from "../repositories/post"
 import { getPublications } from "../repositories/get-publications"
-
+import { createProfile } from "../repositories/create-profile"
+import { PlusButton } from "../components/plusButton"
+import { Header } from "../components/header"
 
 
 type Props = {}
@@ -23,7 +25,8 @@ const HomePage: NextPage<Props> = () => {
   }, [])
 
   return (
-    <AppContainer>
+    <AppContainer headerNode={<Header/>}>
+      <PlusButton/>
     </AppContainer>
   )
 }
