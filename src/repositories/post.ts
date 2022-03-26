@@ -44,9 +44,9 @@ const createPostTypedData = (createPostTypedDataRequest: any) => {
   });
 };
 
-export const createPost = async (filePath: string) => {
+export const createPost = async (filePath: string, description: string) => {
     const profileId = localStorage.getItem('profile_id');
-    const ipfsResult = await uploadIpfs(filePath);
+    const ipfsResult = await uploadIpfs(filePath, description);
     console.log('create post: ipfs result', ipfsResult);
     const createPostRequest = {
         profileId,

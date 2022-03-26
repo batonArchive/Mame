@@ -7,13 +7,12 @@ const client = create({
   protocol: 'https',
 });
 
-export const uploadIpfs = async (filePath: string) => {
+export const uploadIpfs = async (filePath: string, description: string) => {
   const result = await client.add(
     JSON.stringify({
       version: '1.0.0',
       metadata_id: uuidv4(),
-      description: 'Description',
-      content: 'Content',
+      description: description,
       external_url: null,
       image: null,
       imageMimeType: null,
@@ -25,7 +24,7 @@ export const uploadIpfs = async (filePath: string) => {
           type: 'image/jpeg',
         },
       ],
-      appId: 'testing123',
+      appId: 'mame',
     })
   );
 
