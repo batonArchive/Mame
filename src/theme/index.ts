@@ -8,6 +8,10 @@ const theme = extendTheme({
   ...foundations,
   components,
   styles,
+  config: {
+    initialColorMode: "dark",
+    useSystemColorMode: false,
+  }
 })
 
 export default theme
