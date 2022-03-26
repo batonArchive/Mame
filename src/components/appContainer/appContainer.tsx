@@ -13,7 +13,7 @@ export const AppContainer: React.FC<Props> = ({
   children,
 }) => {
   return (
-    <Box color="text.white">
+    <Box minH="100vh" color="text.white" background="background.main">
       {showHeader && (
         <Flex h={12} px={4} background="background.header" align="center" justify="space-between">
           <Box fontFamily="title" fontSize="2xl" fontWeight="900">mame</Box>
@@ -24,7 +24,7 @@ export const AppContainer: React.FC<Props> = ({
           </Box>
         </Flex>
       )}
-      <Box px={4} pt={4} pb={6} minH="100vh" background="background.main">
+      <Box px={4} pt={4} pb={6}>
         {children}
       </Box>
     </Box>
