@@ -13,7 +13,7 @@ import { getProfile } from "../repositories/get-profiles"
 
 type Props = {}
 
-const SelectImagePage: NextPage<Props> = () => {
+const CreateMemePage: NextPage<Props> = () => {
   return (
     <AppContainer>
       <SimpleGrid gap={2} templateColumns="repeat(3, 1fr)">
@@ -28,4 +28,4 @@ const SelectImagePage: NextPage<Props> = () => {
   )
 }
 
-export default SelectImagePage
+export default CreateMemePage
