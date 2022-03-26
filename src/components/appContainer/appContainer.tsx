@@ -19,7 +19,7 @@ export const AppContainer: React.FC<Props> = ({
           <Box fontFamily="title" fontSize="2xl" fontWeight="900">mame</Box>
           <Box>
             <NextLink href="/profile" passHref={true}>
-              <IconButton size="sm" icon={<FaUser/>} aria-label="profile"/>
+              <IconButton size="sm" icon={<FaUser/>} variant="ghost" color="text.gray" aria-label="profile"/>
             </NextLink>
           </Box>
         </Flex>
