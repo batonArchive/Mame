@@ -11,7 +11,7 @@ const App: React.FC<Props> = ({ Component, pageProps }) => {
   return (
     <ChakraProvider theme={theme}>
       <Head>
-        <title>Mame</title>
+        <title></title>
       </Head>
       <Component {...pageProps} />
     </ChakraProvider>
