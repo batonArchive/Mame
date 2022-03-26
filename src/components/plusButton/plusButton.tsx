@@ -27,7 +27,7 @@ export const PlusButton: React.FC<Props> = ({
 
   return (
     <Box position="fixed" right={4} bottom={4}>
-      <Menu>
+      <Menu placement="left-end">
         <MenuButton as={IconButton} icon={<FaPlus/>} size="lg" rounded="full" boxShadow="md" colorScheme="primary" aria-label="create"/>
         <MenuList>
           <MenuItem icon={<FaPlus/>} onClick={handleAddImage}>Add an image</MenuItem>
