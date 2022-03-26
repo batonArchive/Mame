@@ -36,8 +36,6 @@ export const createProfile = async (handle: string) => {
   const address = getAccount();
   console.log('create profile: address', address);
 
-  await login();
-
   const createProfileResult = await createProfileRequest({
     handle: handle,
   });
@@ -50,7 +48,9 @@ export const createProfile = async (handle: string) => {
   const profileCreatedLog = logs.find((l: any) => l.topics[0] === topicId);
   let profileCreatedEventLog = profileCreatedLog.topics;
   const profileId = utils.defaultAbiCoder.decode(['uint256'], profileCreatedEventLog[1])[0];
-  console.log('profile id', BigNumber.from(profileId).toHexString());
+  console.log('profile_id', BigNumber.from(profileId).toHexString());
+
+  localStorage.setItem('profile_id', profileId);
 
   return profileId;
 };

@@ -7,20 +7,28 @@ import { AspectRatio, Avatar, Box, Button, Flex, IconButton, SimpleGrid, Text } 
 import { FaChevronLeft, FaCog } from "react-icons/fa"
 import NextLink from "next/link"
 import { PlusButton } from "../components/plusButton"
+import { updateProfile } from "../repositories/update-profile"
 
 
 type Props = {}
 
-const HomePage: NextPage<Props> = () => {
+const ProfilePage: NextPage<Props> = () => {
   useEffect(() => {
-    console.log("try to login");
 
+    console.log("try to login");
 
     (
    async () => {
-    await login()
-    await getTimeline("");
+    
+
+    await updateProfile();
+
+    const id = localStorage.getItem('profile_id');
+
+    console.log(id);
+    await getTimeline(id!);
    })();
+    
   }, [])
 
   return (
@@ -62,4 +70,4 @@ const HomePage: NextPage<Props> = () => {
   )
 }
 
-export default HomePage
+export default ProfilePage
