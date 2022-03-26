@@ -11,6 +11,7 @@ import { getProfile } from "../repositories/get-profiles"
 import { createPost } from "../repositories/post"
 import { getPublications } from "../repositories/get-publications"
 import { createProfile } from "../repositories/create-profile"
+import { timeline } from "../repositories/user-timeline"
 import { PlusButton } from "../components/plusButton"
 import { Header } from "../components/header"
 import { MemePane } from "../components/memePane"
@@ -25,7 +26,6 @@ type Props = {}
 const HomePage: NextPage<Props> = () => {
   const router = useRouter()
   useEffect(() => {
-    hoge()
   }, [])
 
   return (
@@ -38,12 +38,6 @@ const HomePage: NextPage<Props> = () => {
       <PlusButton/>
     </AppContainer>
   )
-}
-
-async function hoge() {
-  const hoge = await createPost("")
-  const hogehoge = await getPublications()
-  console.log("hoge", hogehoge)
 }
 
 export default HomePage
