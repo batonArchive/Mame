@@ -1,5 +1,7 @@
-import { Box, Flex, FlexProps } from "@chakra-ui/react"
+import { Box, Button, Flex, FlexProps, IconButton } from "@chakra-ui/react"
 import { ReactNode } from "react"
+import NextLink from "next/link"
+import { FaUser } from "react-icons/fa"
 
 
 type Props = {
@@ -16,7 +18,9 @@ export const AppContainer: React.FC<Props> = ({
         <Flex h={12} px={4} background="background.header" align="center" justify="space-between">
           <Box fontFamily="title" fontSize="2xl" fontWeight="900">mame</Box>
           <Box>
-            {/* ボタン類を配置 */}
+            <NextLink href="/profile" passHref={true}>
+              <IconButton size="sm" icon={<FaUser/>} aria-label="profile"/>
+            </NextLink>
           </Box>
         </Flex>
       )}

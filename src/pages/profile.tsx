@@ -5,6 +5,7 @@ import { AppContainer } from "../components/appContainer"
 import { AspectRatio, Avatar, Box, Button, Flex, IconButton, SimpleGrid, Text } from "@chakra-ui/react"
 import { FaChevronLeft, FaCog } from "react-icons/fa"
 import NextLink from "next/link"
+import { PlusButton } from "../components/plusButton"
 
 
 type Props = {}
@@ -19,10 +20,10 @@ const HomePage: NextPage<Props> = () => {
     <AppContainer>
       <Flex mb={-2} justify="space-between">
         <NextLink href="/" passHref={true}>
-          <IconButton icon={<FaChevronLeft/>} variant="ghost" aria-label="back"/>
+          <IconButton icon={<FaChevronLeft/>} size="sm" variant="ghost" aria-label="back"/>
         </NextLink>
         <NextLink href="/settings" passHref={true}>
-          <IconButton icon={<FaCog/>} variant="ghost" aria-label="settings"/>
+          <IconButton icon={<FaCog/>} size="sm" variant="ghost" aria-label="settings"/>
         </NextLink>
       </Flex>
       <Flex gap={6} align="center" justify="center">
@@ -49,6 +50,7 @@ const HomePage: NextPage<Props> = () => {
           </AspectRatio>
         ))}
       </SimpleGrid>
+      <PlusButton/>
     </AppContainer>
   )
 }
