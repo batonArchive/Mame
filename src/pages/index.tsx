@@ -1,6 +1,7 @@
 import React, { useEffect } from "react"
 import { NextPage } from "next"
 import { login } from "../repositories/login"
+import { refresh } from "../repositories/refresh"
 import { AppContainer } from "../components/appContainer"
 import { Avatar, Box, Button, Flex, IconButton, Text } from "@chakra-ui/react"
 import { FaChevronLeft, FaCog } from "react-icons/fa"
@@ -15,6 +16,8 @@ type Props = {}
 const HomePage: NextPage<Props> = () => {
   const router = useRouter()
   useEffect(() => {
+    //login
+    refresh()
   }, [])
 
   return (

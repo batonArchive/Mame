@@ -2,6 +2,8 @@ import { gql } from "@apollo/client"
 import { apolloClient } from "../utils/apolloClient"
 import { login } from './login';
 import { getAccount } from "./ethers";
+import { BigNumber, utils } from 'ethers';
+import { pollUntilIndexed } from '../indexer/has-transaction-been-indexed';
 
 const CREATE_PROFILE = `
   mutation($request: CreateProfileRequest!) { 
@@ -30,16 +32,25 @@ const createProfileRequest = (createProfileRequest: {
   });
 };
 
-export const createProfile = async () => {
+export const createProfile = async (handle: string) => {
   const address = getAccount();
   console.log('create profile: address', address);
 
   await login();
 
   const createProfileResult = await createProfileRequest({
-    handle: new Date().getTime().toString(),
+    handle: handle,
   });
 
-  console.log('profile created', createProfileResult.data);
-  return createProfileResult.data;
+  const result = await pollUntilIndexed(createProfileResult.data.createProfile.txHash);
+  const logs = result.txReceipt.logs;
+  const topicId = utils.id(
+    'ProfileCreated(uint256,address,address,string,string,address,bytes,string,uint256)'
+  );
+  const profileCreatedLog = logs.find((l: any) => l.topics[0] === topicId);
+  let profileCreatedEventLog = profileCreatedLog.topics;
+  const profileId = utils.defaultAbiCoder.decode(['uint256'], profileCreatedEventLog[1])[0];
+  console.log('profile id', BigNumber.from(profileId).toHexString());
+
+  return profileId;
 };

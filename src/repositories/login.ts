@@ -43,20 +43,12 @@ const authenticate = (address: string, signature: string) => {
 export const login = async () => {
   const address = await getAccount()
   const token = localStorage.getItem('auth_token');
-  if (token) {
-    console.log('login: already logged in');
-    return;
-  }
-
   console.log('login: address', address);
 
   const challengeResponse = await generateChallenge(address);
   const signature = await signMessage(challengeResponse.data.challenge.text)
   const accessTokens = await authenticate(address, signature);
   localStorage.setItem('auth_token', accessTokens.data.authenticate.accessToken);
-  return accessTokens.data;
+  localStorage.setItem('refresh_token', accessTokens.data.authenticate.refreshToken);
+  return accessTokens.data.authenticate;
 };
-
-(async () => {
-  await login();
-})();
