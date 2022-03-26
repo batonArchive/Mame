@@ -6,14 +6,14 @@ import { AspectRatio, Avatar, Box, Button, Flex, IconButton, SimpleGrid, Text } 
 import { FaChevronLeft, FaCog } from "react-icons/fa"
 import NextLink from "next/link"
 import { PlusButton } from "../components/plusButton"
+import { updateProfile } from "../repositories/update-profile"
 
 
 type Props = {}
 
-const HomePage: NextPage<Props> = () => {
+const ProfilePage: NextPage<Props> = () => {
   useEffect(() => {
-    console.log("try to login")
-    // login()
+    updateProfile()
   }, [])
 
   return (
@@ -55,4 +55,4 @@ const HomePage: NextPage<Props> = () => {
   )
 }
 
-export default HomePage
+export default ProfilePage

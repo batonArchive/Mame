@@ -101,17 +101,20 @@ const getProfilesRequest = (request: ProfilesRequest) => {
   });
 };
 
-export const profiles = async (request?: ProfilesRequest): Promise<string> => {
+export const getProfile = async (request?: ProfilesRequest) => {
   const address = await getAccount();
   console.log('profiles: address', address);
-
-  await login();
 
   if (!request) {
     request = { ownedBy: address };
   }
-  const profile = await getProfilesRequest(request);
-  console.log('profiles: result', address);
+  const response = await getProfilesRequest(request);
+  const profile = response.data.profiles.items[0];
+  console.log('profiles: result', profile);
 
-  return profile.data;
+  if (profile != null) {
+    localStorage.setItem('profile_id', profile.id);
+  }
+
+  return profile;
 };

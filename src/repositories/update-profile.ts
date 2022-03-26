@@ -20,11 +20,11 @@ const updateProfileRequest = (profileInfo: any) => {
   });
 };
 
-export const updateProfile = async (profileId: string) => {
+export const updateProfile = async () => {
   const address = await getAccount();
   console.log('update profile: address', address);
 
-  await login();
+  const profileId = localStorage.getItem('profile_id');
 
   await updateProfileRequest({
     profileId,
