@@ -1,6 +1,7 @@
 import React, { useEffect } from "react"
 import { NextPage } from "next"
 import { login } from "../repositories/login"
+import { AppContainer } from "../components/appContainer"
 
 
 type Props = {}
@@ -8,13 +9,12 @@ type Props = {}
 const HomePage: NextPage<Props> = () => {
   useEffect(() => {
     console.log("try to login")
-    login()
+    // login()
   }, [])
 
   return (
-    <p>
-      Hello
-    </p>
+    <AppContainer>
+    </AppContainer>
   )
 }
 
