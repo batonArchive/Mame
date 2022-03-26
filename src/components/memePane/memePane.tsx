@@ -1,7 +1,4 @@
 import { AspectRatio, Box, Flex, IconButton, Menu, MenuButton, MenuItem, MenuList, Text } from "@chakra-ui/react"
-import { useRouter } from "next/router"
-import { ChangeEvent, useCallback, useRef } from "react"
-import { FaPlus, FaSearch } from "react-icons/fa"
 
 
 type Props = {

@@ -1,7 +1,7 @@
 import { Box, IconButton, Menu, MenuButton, MenuItem, MenuList, Text } from "@chakra-ui/react"
 import { useRouter } from "next/router"
 import { ChangeEvent, useCallback, useRef } from "react"
-import { FaPlus, FaSearch } from "react-icons/fa"
+import { MdAdd, MdSearch } from "react-icons/md"
 
 
 type Props = {
@@ -28,12 +28,12 @@ export const PlusButton: React.FC<Props> = ({
   return (
     <Box position="fixed" right={4} bottom={4}>
       <Menu placement="left-end">
-        <MenuButton as={IconButton} icon={<FaPlus/>} size="lg" rounded="full" boxShadow="md" colorScheme="primary" aria-label="create"/>
+        <MenuButton as={IconButton} icon={<MdAdd/>} size="lg" rounded="full" boxShadow="md" colorScheme="primary" aria-label="create"/>
         <MenuList>
-          <MenuItem icon={<Box color="primary.main"><FaPlus/></Box>} onClick={handleAddImage}>
+          <MenuItem icon={<Box color="primary.main"><MdAdd/></Box>} onClick={handleAddImage}>
             Add an image
           </MenuItem>
-          <MenuItem icon={<Box color="primary.main"><FaSearch/></Box>} onClick={handleSelectImage}>
+          <MenuItem icon={<Box color="primary.main"><MdSearch/></Box>} onClick={handleSelectImage}>
             Select an image
           </MenuItem>
         </MenuList>

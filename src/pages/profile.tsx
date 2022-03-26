@@ -3,7 +3,7 @@ import { NextPage } from "next"
 import { login } from "../repositories/login"
 import { AppContainer } from "../components/appContainer"
 import { AspectRatio, Avatar, Box, Button, Flex, IconButton, SimpleGrid, Text } from "@chakra-ui/react"
-import { FaChevronLeft, FaCog } from "react-icons/fa"
+import { MdArrowBack, MdSettings } from "react-icons/md"
 import NextLink from "next/link"
 import { PlusButton } from "../components/plusButton"
 import { updateProfile } from "../repositories/update-profile"
@@ -18,10 +18,10 @@ const ProfilePage: NextPage<Props> = () => {
     <AppContainer headerNode={<Header/>}>
       <Flex mb={-2} justify="space-between">
         <NextLink href="/" passHref={true}>
-          <IconButton icon={<FaChevronLeft/>} size="sm" variant="ghost" aria-label="back"/>
+          <IconButton icon={<MdArrowBack/>} size="sm" variant="ghost" aria-label="back"/>
         </NextLink>
         <NextLink href="/settings" passHref={true}>
-          <IconButton icon={<FaCog/>} size="sm" variant="ghost" aria-label="settings"/>
+          <IconButton icon={<MdSettings/>} size="sm" variant="ghost" aria-label="settings"/>
         </NextLink>
       </Flex>
       <Flex gap={6} align="center" justify="center">
