@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "omit-deep": "^0.3.0",
     "@apollo/client": "^3.5.10",
     "@chakra-ui/react": "^1.8.6",
     "@emotion/react": "11",

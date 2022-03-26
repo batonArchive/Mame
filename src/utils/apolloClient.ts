@@ -1,9 +1,18 @@
-import { ApolloClient, InMemoryCache } from "@apollo/client"
+import { ApolloClient, InMemoryCache, ApolloLink, HttpLink } from "@apollo/client"
 
+const httpLink = new HttpLink({ uri: 'https://api-mumbai.lens.dev/' });
 
-const URL = "https://api-mumbai.lens.dev/"
+const authLink = new ApolloLink((operation, forward) => {
+  const token = localStorage.getItem('auth_token');
+  operation.setContext({
+    headers: {
+      'x-access-token': token ? `Bearer ${token}` : ''
+    }
+  });
+  return forward(operation);
+});
 
 export const apolloClient = new ApolloClient({
-  uri: URL,
+  link: authLink.concat(httpLink),
   cache: new InMemoryCache(),
 })

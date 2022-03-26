@@ -2,49 +2,61 @@ import { gql } from "@apollo/client"
 import { apolloClient } from "../utils/apolloClient"
 import { getAccount, signMessage } from "./ethers"
 
+const GET_CHALLENGE = `
+  query($request: ChallengeRequest!) {
+    challenge(request: $request) { text }
+  }
+`;
 
-export const generateChallenge = async (address: string): Promise<string> => {
-   const res = await apolloClient.query({
-    query: gql`
-      query($request: ChallengeRequest!) {
-        challenge(request: $request) { text }
-      }
-    `,
+export const generateChallenge = (address: string) => {
+  return apolloClient.query({
+    query: gql(GET_CHALLENGE),
     variables: {
       request: {
         address,
       },
     },
-  })
-  console.log("generateChallenge", res)
-  return res.data.challenge.text
-}
+  });
+};
 
-export const authenticate = async (address: string, signature: string): Promise<{accessToken: string, refreshToken: string}> => {
-  const res = await apolloClient.mutate({
-    mutation: gql`
-      mutation($request: SignedAuthChallenge!) { 
-        authenticate(request: $request) {
-          accessToken
-          refreshToken
-        }
-      }
-    `,
+const AUTHENTICATION = `
+  mutation($request: SignedAuthChallenge!) { 
+    authenticate(request: $request) {
+      accessToken
+      refreshToken
+    }
+ }
+`;
+
+const authenticate = (address: string, signature: string) => {
+  return apolloClient.mutate({
+    mutation: gql(AUTHENTICATION),
     variables: {
       request: {
         address,
         signature,
       },
     },
-  })
-  console.log("authenticate", res)
-  return res.data.authenticate
-}
+  });
+};
 
 export const login = async () => {
-  const account = await getAccount()
-  const challengeText = await generateChallenge(account)
-  const signature = await signMessage(challengeText)
-  const accessTokens = await authenticate(account, signature)
-  console.log(accessTokens)
-}
+  const address = await getAccount()
+  const token = localStorage.getItem('auth_token');
+  if (token) {
+    console.log('login: already logged in');
+    return;
+  }
+
+  console.log('login: address', address);
+
+  const challengeResponse = await generateChallenge(address);
+  const signature = await signMessage(challengeResponse.data.challenge.text)
+  const accessTokens = await authenticate(address, signature);
+  localStorage.setItem('auth_token', accessTokens.data.authenticate.accessToken);
+  return accessTokens.data;
+};
+
+(async () => {
+  await login();
+})();
