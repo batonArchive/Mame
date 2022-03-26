@@ -110,7 +110,7 @@ export const getProfile = async (request?: ProfilesRequest) => {
   }
   const response = await getProfilesRequest(request);
   const profile = response.data.profiles.items[0];
-  console.log('profiles: result', address);
+  console.log('profiles: result', profile);
 
   if (profile != null) {
     localStorage.setItem('profile_id', profile.id);
