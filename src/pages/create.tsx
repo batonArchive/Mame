@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react"
+import React, { useEffect, useRef, useState } from "react"
 import { NextPage } from "next"
 import { login } from "../repositories/login"
 import { refresh } from "../repositories/refresh"
@@ -18,6 +18,8 @@ const CreateMemePage: NextPage<Props> = () => {
   const inputRef = useRef<HTMLTextAreaElement>(null)
   const router = useRouter()
 
+  const [text, setText] = useState("Type your text")
+
   return (
     <AppContainer>
       <AspectRatio ratio={1}>
@@ -25,11 +27,12 @@ const CreateMemePage: NextPage<Props> = () => {
           <Flex w="full" h="full" direction="column" align="stretch" justify="flex-end">
             <Editable
               p={4} h="30%"
-              fontSize="calc((100vw - 2rem) * 0.08)"
-              defaultValue="Type your text"
+              fontSize="calc((100vw - 2rem) * 0.07)"
+              textShadow="borderText"
+              value={text} onChange={setText}
             >
-              <EditablePreview/>
-              <EditableTextarea h="full" ref={inputRef}/>
+              <EditablePreview display="flex" alignItems="flex-end" w="full" h="full" lineHeight="shorter" whiteSpace="pre"/>
+              <EditableTextarea lineHeight="shorter" minW="full" minH="full" resize="none" ref={inputRef}/>
             </Editable>
           </Flex>
         </Box>
@@ -39,10 +42,10 @@ const CreateMemePage: NextPage<Props> = () => {
           <IconButton icon={<MdClose/>} size="sm" variant="ghost" aria-label="back" onClick={() => router.push("/")}/>
         </Box>
         <Flex gap={2}>
-          <IconButton icon={<MdKeyboard/>} size="sm" variant="ghost" aria-label="input" onClick={() => inputRef?.current?.focus()}/>
-          <IconButton icon={<></>} size="sm" variant="ghost" aria-label="input"/>
-          <IconButton icon={<MdFormatAlignCenter/>} size="sm" variant="ghost" aria-label="input"/>
-          <IconButton icon={<MdVerticalAlignCenter/>} size="sm" variant="ghost" aria-label="input"/>
+          <IconButton icon={<MdKeyboard/>} size="sm" variant="ghost" aria-label="input" onClick={() => (console.log(inputRef.current), inputRef?.current?.focus())}/>
+          <IconButton icon={<></>} size="sm" variant="ghost" aria-label="font"/>
+          <IconButton icon={<MdFormatAlignCenter/>} size="sm" variant="ghost" aria-label="align"/>
+          <IconButton icon={<MdVerticalAlignCenter/>} size="sm" variant="ghost" aria-label="position"/>
         </Flex>
         <Box>
           <IconButton icon={<MdCheck/>} size="sm" variant="ghost" aria-label="confirm"/>

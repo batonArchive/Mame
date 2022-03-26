@@ -17,7 +17,7 @@ export const MemePane: React.FC<Props> = ({
         <Text
           left={2} bottom={2}
           fontSize="sm" lineHeight="shorter"
-          textShadow="1px 1px 0px black, 1px -1px 0px black, -1px 1px 0px black, -1px -1px 0px black, 1px 0px 0px black, -1px 0px 0px black, 0px 1px 0px black, 0px -1px 0px black"
+          textShadow="borderText"
           whiteSpace="pre-wrap"
           noOfLines={4}
           position="absolute"
