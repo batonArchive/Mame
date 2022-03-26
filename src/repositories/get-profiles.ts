@@ -101,7 +101,7 @@ const getProfilesRequest = (request: ProfilesRequest) => {
   });
 };
 
-export const profiles = async (request?: ProfilesRequest) => {
+export const profiles = async (request?: ProfilesRequest): Promise<string> => {
   const address = await getAccount();
   console.log('profiles: address', address);
 

@@ -11,7 +11,6 @@ const UPDATE_PROFILE = `
  }
 `;
 
-// TODO sort types!
 const updateProfileRequest = (profileInfo: any) => {
   return apolloClient.mutate({
     mutation: gql(UPDATE_PROFILE),
@@ -37,5 +36,4 @@ export const updateProfile = async (profileId: string) => {
     coverPicture: null,
   });
 
-  // await profiles({ profileIds: [profileId] });
 };
