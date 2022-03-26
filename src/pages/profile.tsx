@@ -1,27 +1,20 @@
 import React, { useEffect } from "react"
 import { NextPage } from "next"
 import { login } from "../repositories/login"
-import { getTimeline } from "../repositories/get-timeline"
 import { AppContainer } from "../components/appContainer"
 import { AspectRatio, Avatar, Box, Button, Flex, IconButton, SimpleGrid, Text } from "@chakra-ui/react"
 import { FaChevronLeft, FaCog } from "react-icons/fa"
 import NextLink from "next/link"
 import { PlusButton } from "../components/plusButton"
 import { updateProfile } from "../repositories/update-profile"
+import { Header } from "../components/header"
 
 
 type Props = {}
 
 const ProfilePage: NextPage<Props> = () => {
-  useEffect(() => {
-
-    console.log("try to login");
-    ();
-    
-  }, [])
-
   return (
-    <AppContainer>
+    <AppContainer headerNode={<Header/>}>
       <Flex mb={-2} justify="space-between">
         <NextLink href="/" passHref={true}>
           <IconButton icon={<FaChevronLeft/>} size="sm" variant="ghost" aria-label="back"/>

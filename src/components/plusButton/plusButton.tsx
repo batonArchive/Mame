@@ -1,6 +1,6 @@
 import { Box, IconButton, Menu, MenuButton, MenuItem, MenuList, Text } from "@chakra-ui/react"
 import { useRouter } from "next/router"
-import { useCallback } from "react"
+import { ChangeEvent, useCallback, useRef } from "react"
 import { FaPlus, FaSearch } from "react-icons/fa"
 
 
@@ -8,16 +8,22 @@ type Props = {
 }
 
 export const PlusButton: React.FC<Props> = ({
-}) => {  
+}) => {
+  const inputRef = useRef<HTMLInputElement>(null)
   const router = useRouter()
 
   const handleAddImage = useCallback(() => {
-    // TODO: 端末内の画像選択
+    inputRef.current?.click()
   }, [])
   
   const handleSelectImage = useCallback(() => {
     router.push("/select")
-  }, [])
+  }, [router])
+
+  const handleFileChange = useCallback((event: ChangeEvent<HTMLInputElement>) => {
+    // TODO: 画像のアップロードをする
+    router.push("/create")
+  }, [router])
 
   return (
     <Box position="fixed" right={4} bottom={4}>
@@ -28,6 +34,7 @@ export const PlusButton: React.FC<Props> = ({
           <MenuItem icon={<FaSearch/>} onClick={handleSelectImage}>Select an image</MenuItem>
         </MenuList>
       </Menu>
+      <input type="file" accept="image/*" ref={inputRef} style={{display: "none"}} onChange={handleFileChange}/>
     </Box>
   )
 }

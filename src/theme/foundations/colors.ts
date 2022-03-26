@@ -9,7 +9,8 @@ export const colors: Colors = {
   },
   background: {
     main: "#1F2128",
-    header: "#2E313B"
+    header: "#2E313B",
+    black: "#000000",
   },
 
   primary: {
