@@ -1,8 +1,6 @@
 import { gql } from "@apollo/client"
 import { apolloClient } from "../utils/apolloClient"
-import { login } from './login';
 import { getAccount } from "./ethers";
-
 
 const GET_PROFILES = `
   query($request: ProfileQueryRequest!) {
@@ -92,6 +90,32 @@ export interface ProfilesRequest {
   whoMirroredPublicationId?: string;
 }
 
+export interface Profile {
+  id: string
+  name: string
+  bio: string
+  location: string
+  website: string
+  twitterUrl: string
+  picture: string
+  handle: string
+  coverPicture: string
+  ownedBy: string
+  depatcher: {
+    address: string
+  }
+  stats: {
+    totalFollowers: number
+    totalFollowing: number
+    totalPosts: number
+    totalComments: number
+    totalMirrors: number
+    totalPublications: number
+    totalCollects: number
+  }
+  followModule: null
+}
+
 const getProfilesRequest = (request: ProfilesRequest) => {
   return apolloClient.query({
     query: gql(GET_PROFILES),
@@ -101,7 +125,7 @@ const getProfilesRequest = (request: ProfilesRequest) => {
   });
 };
 
-export const getProfile = async (request?: ProfilesRequest) => {
+export const getProfile = async (request?: ProfilesRequest): Promise<Profile> => {
   const address = await getAccount();
   console.log('profiles: address', address);
 

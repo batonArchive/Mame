@@ -9,8 +9,9 @@ import NextLink from "next/link"
 import { useRouter } from "next/router"
 import { updateProfile } from "../repositories/update-profile"
 import { getProfile } from "../repositories/get-profiles"
-import { createProfile } from "../repositories/create-profile"
-import { PlusButton } from "../components/plusButton"
+import { createPost } from "../repositories/post"
+import { getPublications } from "../repositories/get-publications"
+
 
 
 type Props = {}
@@ -18,19 +19,19 @@ type Props = {}
 const HomePage: NextPage<Props> = () => {
   const router = useRouter()
   useEffect(() => {
-    (async () => {
-      await login()
-      const profile = await getProfile()
-      const profileId = profile == null ? await createProfile(new Date().getTime().toString()) : profile.id
-      console.log({profileId})
-    })()
+    hoge()
   }, [])
 
   return (
     <AppContainer>
-      <PlusButton/>
     </AppContainer>
   )
+}
+
+async function hoge() {
+  const hoge = await createPost("")
+  const hogehoge = await getPublications()
+  console.log("hoge", hogehoge)
 }
 
 export default HomePage
