@@ -11,23 +11,22 @@ export const PlusButton: React.FC<Props> = ({
 }) => {
   const inputRef = useRef<HTMLInputElement>(null)
   const router = useRouter()
-
-  const handleAddImage = useCallback(() => {
-    inputRef.current?.click()
-  }, [])
   
   const handleSelectImage = useCallback(() => {
     router.push("/select")
   }, [router])
 
+  // 画像のアップロード機能がなくなったのでこれはもう使わない
+  const handleAddImage = useCallback(() => {
+    inputRef.current?.click()
+  }, [])
   const handleFileChange = useCallback((event: ChangeEvent<HTMLInputElement>) => {
-    // TODO: 画像のアップロードをする
     router.push("/create")
   }, [router])
 
   return (
     <Box position="fixed" right={4} bottom={4}>
-      <Menu placement="left-end">
+      {/* <Menu placement="left-end">
         <MenuButton as={IconButton} icon={<MdAdd/>} size="lg" rounded="full" boxShadow="md" colorScheme="primary" aria-label="create"/>
         <MenuList>
           <MenuItem icon={<Box color="primary.main"><MdAdd/></Box>} onClick={handleAddImage}>
@@ -38,7 +37,8 @@ export const PlusButton: React.FC<Props> = ({
           </MenuItem>
         </MenuList>
       </Menu>
-      <input type="file" accept="image/*" ref={inputRef} style={{display: "none"}} onChange={handleFileChange}/>
+      <input type="file" accept="image/*" ref={inputRef} style={{display: "none"}} onChange={handleFileChange}/> */}
+      <IconButton icon={<MdAdd/>} size="lg" rounded="full" boxShadow="md" colorScheme="primary" aria-label="create" onClick={handleSelectImage}/>
     </Box>
   )
 }

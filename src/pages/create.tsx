@@ -243,7 +243,7 @@ const CreateMemePage: NextPage<Props> = () => {
           <></>
         )}
       </Box>
-      <Modal isOpen={isModalOpen} onClose={handleModalClose}>
+      <Modal isOpen={isModalOpen} onClose={handleModalClose} isCentered={true}>
         <ModalOverlay/>
         <ModalContent>
           <ModalHeader>Submission Completed</ModalHeader>
@@ -251,7 +251,7 @@ const CreateMemePage: NextPage<Props> = () => {
             {createdMeme && <DetailedMemePane meme={createdMeme}/>}
           </ModalBody>
           <ModalFooter>
-            <Button onClick={handleModalClose}>Close</Button>
+            <Button w="full" onClick={handleModalClose}>Close</Button>
           </ModalFooter>
         </ModalContent>
       </Modal>

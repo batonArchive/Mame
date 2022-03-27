@@ -16,7 +16,7 @@ export const DetailedMemePane: React.FC<Props> = ({
         <Flex w="full" h="full" direction="column" align="stretch" justify={meme.position}>
           <Text
             p={4}
-            fontSize={`calc((100vw - 2rem) * ${meme.size} / 1000)`}
+            fontSize={`calc((100vw - 4rem) * ${meme.size} / 1000)`}
             fontWeight="bold"
             fontFamily={meme.font}
             color={meme.color}

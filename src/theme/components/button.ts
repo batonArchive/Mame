@@ -22,7 +22,7 @@ const button: ComponentStyleConfig = {
         }
       } else {
         return {
-          color: "text.black",
+          color: (colorScheme === "gray") ? "text.white" : "text.black",
           background: `${props.colorScheme}.500`,
           _hover: {
             background: `${props.colorScheme}.400`,
@@ -55,6 +55,10 @@ const button: ComponentStyleConfig = {
     sm: {
       fontSize: "md",
     },
+    md: {
+      fontSize: "md",
+      rounded: "xl",
+    }
   },
   defaultProps: {
     colorScheme: "gray"
