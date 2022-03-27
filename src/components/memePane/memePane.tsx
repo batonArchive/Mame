@@ -30,7 +30,7 @@ export const MemePane: React.FC<Props> = ({
           </Text>
         </Box>
       </AspectRatio>
-      <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} isCentered={true}>
+      <Modal size="fullWidth" isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} isCentered={true}>
         <ModalOverlay/>
         <ModalContent>
           <ModalHeader>

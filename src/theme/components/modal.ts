@@ -24,6 +24,12 @@ const modal: ComponentStyleConfig = {
       px: 4, py: 0,
     }
   },
+
+  sizes: {
+    fullWidth: {
+      maxW: "100vw"
+    }
+  }
 }
 
 export default modal
