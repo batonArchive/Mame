@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useRef, useState } from "react"
+import React, { useCallback, useEffect, useMemo, useRef, useState } from "react"
 import { NextPage } from "next"
 import { AppContainer } from "../components/appContainer"
 import {
@@ -63,6 +63,10 @@ const CreateMemePage: NextPage<Props> = () => {
   const inputRef = useRef<HTMLSpanElement>(null)
   const router = useRouter()
 
+  const image = useMemo(() => {
+    return typeof router.query.image === "string" ? router.query.image : ""
+  }, [router])
+
   const [mode, setMode] = useState<CreateMemeMode>("color")
   const [text, setText] = useState("Type your text")
   const [color, setColor] = useState<MemeColor>("#FFFFFF")
@@ -94,13 +98,14 @@ const CreateMemePage: NextPage<Props> = () => {
       badges.splice(Math.floor(Math.random() * badges.length), 1)
     }
 
-    const meme = {image: "https://source.unsplash.com/random", text, color, font, size, align, position, badges} as Meme
+    const meme = {image, text, color, font, size, align, position, badges} as Meme
     if (confirm("Are you sure to submit this meme?")) {
       // TODO: ポスト処理
+      console.log(meme)
       setCreatedMeme(meme)
       setIsModalOpen(true)
     }
-  }, [text, color, font, size, align, position])
+  }, [image, text, color, font, size, align, position])
 
   const handleModalClose = useCallback(() => {
     setIsModalOpen(false)

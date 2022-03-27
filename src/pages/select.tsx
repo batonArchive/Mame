@@ -30,7 +30,7 @@ const SelectImagePage: NextPage<Props> = () => {
             <Box
               rounded="lg"
               backgroundImage={`url('${image}')`} backgroundSize="cover"
-              onClick={() => router.push("/create")}
+              onClick={() => router.push({pathname: "/create", query: {image}})}
             />
           </AspectRatio>
         ))}
