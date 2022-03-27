@@ -3,7 +3,7 @@ import React from "react"
 
 
 const TITLE = "mame"
-const DESCRIPTION = ""
+const DESCRIPTION = "MEME themed decentralized social network application."
 
 class Document extends NextDocument {
   render(): JSX.Element {
