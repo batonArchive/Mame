@@ -26,8 +26,6 @@ type Props = {}
 // - プロフィール編集
 const HomePage: NextPage<Props> = () => {
   const router = useRouter()
-  useEffect(() => {
-  }, [])
 
   // TODO: APIと接続
   const memes = Array.from({length: 20}).map((dummy, index) => ({
