@@ -9,11 +9,15 @@ import { PlusButton } from "../components/plusButton"
 import { updateProfile } from "../repositories/update-profile"
 import { Header } from "../components/header"
 import { MemePane } from "../components/memePane"
+import useSWR from "swr"
+import { getProfile } from "../repositories/get-profiles"
 
 
 type Props = {}
 
 const ProfilePage: NextPage<Props> = () => {
+  const {data: profile} = useSWR("/profile", (url) => getProfile())
+
   // TODO: APIと接続
   const memes = Array.from({length: 20}).map((dummy, index) => ({
     image: `https://source.unsplash.com/random?sig=${index}`,
@@ -50,7 +54,7 @@ const ProfilePage: NextPage<Props> = () => {
         </Box>
       </Flex>
       <Box mt={3} fontSize="xl" fontWeight="bold" textAlign="center">
-        Michael Jackson
+         {profile?.name ?? "No Name"}
       </Box>
       <SimpleGrid mt={4} gap={2} templateColumns="repeat(2, 1fr)">
         {memes.map((meme, index) => (

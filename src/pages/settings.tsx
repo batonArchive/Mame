@@ -1,4 +1,4 @@
-import React, { useEffect } from "react"
+import React, { useCallback, useEffect, useState } from "react"
 import { NextPage } from "next"
 import { login } from "../repositories/login"
 import { refresh } from "../repositories/refresh"
@@ -12,11 +12,27 @@ import { createProfile } from "../repositories/create-profile"
 import { PlusButton } from "../components/plusButton"
 import { Header } from "../components/header"
 import { MdArrowBack } from "react-icons/md"
+import useSWR from "swr"
 
 
 type Props = {}
 
 const HomePage: NextPage<Props> = () => {
+  const {data: profile} = useSWR("/profile", (url) => getProfile())
+
+  const [name, setName] = useState("")
+  const [bio, setBio] = useState("")
+
+  const handleUpdate = useCallback(async () => {
+    await updateProfile(name, bio)
+    alert("Successfully updated")
+  }, [name, bio])
+
+  useEffect(() => {
+    setName(profile?.name ?? "")
+    setBio(profile?.bio ?? "")
+  }, [profile])
+
   return (
     <AppContainer headerNode={<Header/>}>
       <Flex align="center" justify="space-between">
@@ -32,14 +48,12 @@ const HomePage: NextPage<Props> = () => {
       </Flex>
       <SimpleGrid mt={4} columnGap={4} rowGap={2} alignItems="baseline" templateColumns="max-content 1fr">
         <Box fontSize="sm" color="text.gray">Name</Box>
-        <Box><Input textAlign="right" variant="flushed"/></Box>
+        <Box><Input textAlign="right" variant="flushed" value={name} onChange={(event) => setName(event.target.value)}/></Box>
         <Box fontSize="sm" color="text.gray">Bio</Box>
-        <Box><Input textAlign="right" variant="flushed"/></Box>
-        <Box fontSize="sm" color="text.gray">Website</Box>
-        <Box><Input textAlign="right" type="url" variant="flushed"/></Box>
+        <Box><Input textAlign="right" variant="flushed" value={bio} onChange={(event) => setBio(event.target.value)}/></Box>
       </SimpleGrid>
       <Box mt={6}>
-        <Button w="full" colorScheme="primary">Update profile</Button>
+        <Button w="full" colorScheme="primary" onClick={handleUpdate}>Update profile</Button>
       </Box>
     </AppContainer>
   )
