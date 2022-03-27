@@ -1,5 +1,6 @@
-import { AspectRatio, Box, Button, Flex, Modal, ModalBody, ModalContent, ModalFooter, ModalHeader, ModalOverlay, Text } from "@chakra-ui/react"
+import { AspectRatio, Avatar, Box, Button, Flex, Icon, Modal, ModalBody, ModalContent, ModalFooter, ModalHeader, ModalOverlay, Text } from "@chakra-ui/react"
 import { useState } from "react"
+import { MdApps, MdEdit, MdFavoriteBorder } from "react-icons/md"
 import { Meme } from "../../models/meme"
 import { DetailedMemePane } from "./detailedMemePane"
 
@@ -33,15 +34,24 @@ export const MemePane: React.FC<Props> = ({
         <ModalOverlay/>
         <ModalContent>
           <ModalHeader>
-
+            <Flex w="full" justify="space-between">
+              <Flex align="center">
+                <Avatar mr={2} size="sm"/>
+                <Text fontSize="md">Michael Jackson</Text>
+              </Flex>
+              <Flex align="center">
+                <Text fontSize="md" fontWeight="normal">1982</Text>
+                <Icon ml={2} w={6} h={6} as={MdFavoriteBorder}/>
+              </Flex>
+            </Flex>
           </ModalHeader>
           <ModalBody>
             <DetailedMemePane meme={meme}/>
           </ModalBody>
           <ModalFooter>
             <Flex w="full" gap={4} justify="stretch">
-              <Button flexGrow="1">History</Button>
-              <Button flexGrow="1">Quote</Button>
+              <Button flexGrow="1" leftIcon={<MdApps/>}>History</Button>
+              <Button flexGrow="1" leftIcon={<MdEdit/>}>Quote</Button>
             </Flex>
           </ModalFooter>
         </ModalContent>
