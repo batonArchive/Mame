@@ -19,7 +19,7 @@ type Props = {}
 
 const HomePage: NextPage<Props> = () => {
   const router = useRouter()
-  const {data: profile} = useSWR("/profile", (url) => getProfile())
+  const {data: profile, mutate} = useSWR("/profile", (url) => getProfile())
 
   const [name, setName] = useState("")
   const [bio, setBio] = useState("")
@@ -27,8 +27,9 @@ const HomePage: NextPage<Props> = () => {
   const handleUpdate = useCallback(async () => {
     await updateProfile(name, bio)
     alert("Successfully updated")
+    await mutate((profile) => profile ? {...profile, name, bio} : undefined)
     router.push("/profile")
-  }, [name, bio, router])
+  }, [name, bio, router, mutate])
 
   useEffect(() => {
     setName(profile?.name ?? "")
