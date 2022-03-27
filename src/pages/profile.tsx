@@ -1,4 +1,4 @@
-import React, { useEffect } from "react"
+import React, { useEffect, useMemo } from "react"
 import { NextPage } from "next"
 import { login } from "../repositories/login"
 import { AppContainer } from "../components/appContainer"
@@ -11,24 +11,33 @@ import { Header } from "../components/header"
 import { MemePane } from "../components/memePane"
 import useSWR from "swr"
 import { getProfile } from "../repositories/get-profiles"
+import { timeline as getTimeline } from "../repositories/user-timeline"
+import { Meme } from "../models/meme"
 
 
 type Props = {}
 
 const ProfilePage: NextPage<Props> = () => {
   const {data: profile} = useSWR("/profile", (url) => getProfile())
+  const {data: timeline} = useSWR("/timeline", (url) => getTimeline())
 
-  // TODO: APIと接続
-  const memes = Array.from({length: 20}).map((dummy, index) => ({
-    image: `https://source.unsplash.com/random?sig=${index}`,
-    text: "This is an awesome meme!\nDon't you think so?\nSay YES!!!",
-    color: "#FFFFFF" as const,
-    font: "Anton" as const,
-    size: 70,
-    align: "center" as const,
-    position: "flex-end" as const,
-    badges: [],
-  }))
+  const memes = useMemo(() => {
+    return timeline?.items?.map((item) => {
+      const image = item.metadata.media[0].original.url
+      const text = item.metadata.description
+      const rest = JSON.parse(item.metadata.attributes[0]?.value ?? "{}")
+      return {
+        image,
+        text,
+        color: rest.color ?? "#FFFFFF",
+        font: rest.font ?? "Anton",
+        size: rest.size ?? 70,
+        align: rest.align ?? "center",
+        position: rest.position ?? "flex-end",
+        badges: rest.badges ?? []
+      } as Meme
+    }) ?? []
+  }, [timeline])
 
   return (
     <AppContainer headerNode={<Header/>}>

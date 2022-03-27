@@ -341,9 +341,9 @@ const getTimelineRequest = (profileId: string) => {
 };
 
 export const timeline = async (): Promise<Publications> => {
-  const profileId = localStorage.getItem('profile_id') ?? "";
+  const profileId = "0x02cd"//localStorage.getItem('profile_id') ?? "";
   const result = await getTimelineRequest(profileId);
   console.log('ping: result', result.data);
 
-  return result.data;
+  return result.data.timeline;
 };
