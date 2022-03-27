@@ -46,8 +46,10 @@ export const login = async () => {
   console.log('login: address', address);
 
   const challengeResponse = await generateChallenge(address);
+  console.log('challengeResponse', challengeResponse);
   const signature = await signText(challengeResponse.data.challenge.text)
   const accessTokens = await authenticate(address, signature);
+  console.log('accessTokens', accessTokens);
   localStorage.setItem('auth_token', accessTokens.data.authenticate.accessToken);
   localStorage.setItem('refresh_token', accessTokens.data.authenticate.refreshToken);
   return accessTokens.data.authenticate;

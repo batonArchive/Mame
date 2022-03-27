@@ -3,8 +3,11 @@
     return process.argv.find((c) => c === '--init') !== undefined;
   };
   
-  export const PK = "2b5cade15fd861e6075e77665b869241f7ce1294f6836dba1df44294e29964d1";
-  
+//export const PK = "0x49723865a8ab41e5e8081839e33dff15ab6b0125ba3acc82c25df64e8a8668f5";
+//export const PK = "2b5cade15fd861e6075e77665b869241f7ce1294f6836dba1df44294e29964d1";
+//export const PK = "0x8d555d81117aa929947c9095a90b413822f3c67c50809456d9fb63227bb101bc";
+
+
   export const MUMBAI_RPC_URL = "https://rpc-mumbai.matic.today"
   
   export const LENS_API = "https://api-mumbai.lens.dev/"

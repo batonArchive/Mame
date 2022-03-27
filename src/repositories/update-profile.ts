@@ -1,6 +1,6 @@
 import { gql } from "@apollo/client"
 import { apolloClient } from "../utils/apolloClient"
-import { getAccount } from "./ethers";
+import { getAddressFromSigner } from '../ethers.service';
 
 const UPDATE_PROFILE = `
   mutation($request: UpdateProfileRequest!) { 
@@ -20,7 +20,7 @@ const updateProfileRequest = (profileInfo: any) => {
 };
 
 export const updateProfile = async (name: string, bio: string) => {
-  const address = await getAccount();
+  const address = await getAddressFromSigner();
   console.log('update profile: address', address);
 
   const profileId = localStorage.getItem('profile_id');

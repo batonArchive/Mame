@@ -3,14 +3,28 @@ import { ethers, utils, Wallet } from 'ethers';
 import { MUMBAI_RPC_URL, PK } from './config';
 import { omit } from './helpers';
 
-export const ethersProvider = new ethers.providers.JsonRpcProvider(MUMBAI_RPC_URL);
+//export const ethersProvider = new ethers.providers.JsonRpcProvider(MUMBAI_RPC_URL);
+
+declare global {
+    interface Window {
+      ethereum: any
+    }
+  }
 
 export const getSigner = () => {
-  return new Wallet(PK, ethersProvider);
+        // const curProvider = window['ethereum'] || window.web3.currentProvider
+
+        const ethersProvider = typeof window === "object" ? new ethers.providers.Web3Provider(window.ethereum) : null
+        const provider = new ethers.providers.Web3Provider(window.ethereum);    
+        return provider.getSigner();
+
+  //return new Wallet(PK, ethersProvider);
 };
 
 export const getAddressFromSigner = () => {
-  return getSigner().address;
+    const accounts = window.ethereum.request({method: "eth_requestAccounts"})
+  return accounts[0]
+  //return getSigner().address;
 };
 
 export const signedTypeData = (
