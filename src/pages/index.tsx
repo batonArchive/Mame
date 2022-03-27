@@ -28,8 +28,6 @@ type Props = {}
 const HomePage: NextPage<Props> = () => {
   const router = useRouter()
   useEffect(() => {
-    createPost("aa", "aaaa")
-    getPublications()
   }, [])
 
   // TODO: APIと接続

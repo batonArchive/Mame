@@ -1,6 +1,6 @@
 import { gql } from "@apollo/client"
 import { apolloClient } from "../utils/apolloClient"
-import { getAccount } from "./ethers";
+import { getAddressFromSigner } from '../ethers.service';
 
 const GET_PROFILES = `
   query($request: ProfileQueryRequest!) {
@@ -126,7 +126,7 @@ const getProfilesRequest = (request: ProfilesRequest) => {
 };
 
 export const getProfile = async (request?: ProfilesRequest): Promise<Profile> => {
-  const address = await getAccount();
+  const address = await getAddressFromSigner();
   console.log('profiles: address', address);
 
   if (!request) {

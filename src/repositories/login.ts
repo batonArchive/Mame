@@ -1,6 +1,6 @@
 import { gql } from "@apollo/client"
 import { apolloClient } from "../utils/apolloClient"
-import { getAccount, signMessage } from "./ethers"
+import { getAddressFromSigner, signText } from '../ethers.service';
 
 const GET_CHALLENGE = `
   query($request: ChallengeRequest!) {
@@ -41,12 +41,12 @@ const authenticate = (address: string, signature: string) => {
 };
 
 export const login = async () => {
-  const address = await getAccount()
+  const address = await getAddressFromSigner()
   const token = localStorage.getItem('auth_token');
   console.log('login: address', address);
 
   const challengeResponse = await generateChallenge(address);
-  const signature = await signMessage(challengeResponse.data.challenge.text)
+  const signature = await signText(challengeResponse.data.challenge.text)
   const accessTokens = await authenticate(address, signature);
   localStorage.setItem('auth_token', accessTokens.data.authenticate.accessToken);
   localStorage.setItem('refresh_token', accessTokens.data.authenticate.refreshToken);
