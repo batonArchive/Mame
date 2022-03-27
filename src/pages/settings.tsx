@@ -3,7 +3,7 @@ import { NextPage } from "next"
 import { login } from "../repositories/login"
 import { refresh } from "../repositories/refresh"
 import { AppContainer } from "../components/appContainer"
-import { Avatar, Box, Button, Flex, IconButton, Text } from "@chakra-ui/react"
+import { Avatar, Box, Button, Flex, IconButton, Input, SimpleGrid, Text } from "@chakra-ui/react"
 import NextLink from "next/link"
 import { useRouter } from "next/router"
 import { updateProfile } from "../repositories/update-profile"
@@ -11,6 +11,7 @@ import { getProfile } from "../repositories/get-profiles"
 import { createProfile } from "../repositories/create-profile"
 import { PlusButton } from "../components/plusButton"
 import { Header } from "../components/header"
+import { MdArrowBack } from "react-icons/md"
 
 
 type Props = {}
@@ -18,7 +19,28 @@ type Props = {}
 const HomePage: NextPage<Props> = () => {
   return (
     <AppContainer headerNode={<Header/>}>
-      Settings
+      <Flex align="center" justify="space-between">
+        <NextLink href="/profile" passHref={true}>
+          <IconButton icon={<MdArrowBack/>} size="sm" variant="ghost" aria-label="back"/>
+        </NextLink>
+        <Box fontSize="lg" fontWeight="bold">
+          Settings
+        </Box>
+        <Box visibility="hidden">
+          <IconButton isDisabled={true} size="sm" variant="ghost" aria-label="settings"/>
+        </Box>
+      </Flex>
+      <SimpleGrid mt={4} columnGap={4} rowGap={2} alignItems="baseline" templateColumns="max-content 1fr">
+        <Box fontSize="sm" color="text.gray">Name</Box>
+        <Box><Input textAlign="right" variant="flushed"/></Box>
+        <Box fontSize="sm" color="text.gray">Bio</Box>
+        <Box><Input textAlign="right" variant="flushed"/></Box>
+        <Box fontSize="sm" color="text.gray">Website</Box>
+        <Box><Input textAlign="right" type="url" variant="flushed"/></Box>
+      </SimpleGrid>
+      <Box mt={6}>
+        <Button w="full" colorScheme="primary">Update profile</Button>
+      </Box>
     </AppContainer>
   )
 }
