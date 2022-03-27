@@ -54,7 +54,7 @@ const ProfilePage: NextPage<Props> = () => {
         </Box>
       </Flex>
       <Box mt={3} fontSize="xl" fontWeight="bold" textAlign="center">
-         {profile?.name ?? "No Name"}
+         {profile?.name ?? ""}
       </Box>
       <SimpleGrid mt={4} gap={2} templateColumns="repeat(2, 1fr)">
         {memes.map((meme, index) => (
