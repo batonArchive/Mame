@@ -51,6 +51,7 @@ import {
   MEME_POSITIONS
 } from "../models/meme"
 import { DetailedMemePane } from "../components/memePane/detailedMemePane"
+import { createPost } from "../repositories/post"
 
 
 type Props = {}
@@ -100,8 +101,7 @@ const CreateMemePage: NextPage<Props> = () => {
 
     const meme = {image, text, color, font, size, align, position, badges} as Meme
     if (confirm("Are you sure to submit this meme?")) {
-      // TODO: ポスト処理
-      console.log(meme)
+      await createPost(image, text, [{"trait_type": "Data", "value": JSON.stringify({color, font, size, align, position, badges})}])
       setCreatedMeme(meme)
       setIsModalOpen(true)
     }

@@ -21,17 +21,7 @@ import { MEME_ALIGNS, MEME_COLORS, MEME_FONTS, MEME_POSITIONS } from "../models/
 
 type Props = {}
 
-// TODO: あとやること
-// - 投稿画面
-// - 一覧の詳細
-// - プロフィール編集
 const HomePage: NextPage<Props> = () => {
-  const router = useRouter()
-  useEffect(() => {
-    createPost("aa", "aaaa")
-    getPublications()
-  }, [])
-
   // TODO: APIと接続
   const memes = Array.from({length: 20}).map((dummy, index) => ({
     image: `https://source.unsplash.com/random?sig=${index}`,
