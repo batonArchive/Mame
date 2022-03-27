@@ -2,7 +2,7 @@ import { gql } from "@apollo/client"
 import { apolloClient } from "../utils/apolloClient"
 import { uploadIpfs } from '../ipfs';
 import { pollUntilIndexed } from '../indexer/has-transaction-been-indexed';
-import { getAddressFromSigner, signedTypeData, splitSignature } from '../ethers.service';
+import { getAddressFromSigner, getSigner, signedTypeData, splitSignature } from '../ethers.service';
 import { lensHub } from '../lens-hub';
 import { BigNumber, utils } from 'ethers';
 

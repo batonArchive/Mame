@@ -296,7 +296,7 @@ const GET_PUBLICATIONS = `
 `;
 
 export interface Publications {
-    items: [Publication]
+    items: Publication[]
     pageInfo: {
         prev: string
         next: string
@@ -317,8 +317,8 @@ export interface Publication {
         name: string
         description: string
         content: string
-        media: [MetadataMedia]
-        attributes: []
+        media: MetadataMedia[]
+        attributes: any[]
     }
     createdAt: string
     collectModule: null
@@ -327,8 +327,9 @@ export interface Publication {
 }
 
 export interface MetadataMedia {
+  original: {
     url: string
-    type: string
+  }
 }
 
 const getPublicationsRequest = (getPublicationQuery: any) => {
