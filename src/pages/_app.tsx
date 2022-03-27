@@ -13,12 +13,12 @@ type Props = AppProps<AppInitialProps>
 const App: React.FC<Props> = ({ Component, pageProps }) => {
   useEffect(() => {
     (async () => {
-      if (localStorage.getItem("auth_token") && localStorage.getItem("refresh_token") && localStorage.getItem("profile_id")) {
-        await refresh()
-      } else {
-        await login()
-        await createProfile(new Date().getDate().toString(16))
-      }
+      // if (localStorage.getItem("auth_token") && localStorage.getItem("refresh_token") && localStorage.getItem("profile_id")) {
+      //   await refresh()
+      // } else {
+      //   await login()
+      //   await createProfile(new Date().getDate().toString(16))
+      // }
     })()
   }, [])
 
