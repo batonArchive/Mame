@@ -17,28 +17,37 @@ import { explore } from "../repositories/explore-publications"
 import { PlusButton } from "../components/plusButton"
 import { Header } from "../components/header"
 import { MemePane } from "../components/memePane"
-import { MEME_ALIGNS, MEME_COLORS, MEME_FONTS, MEME_POSITIONS } from "../models/meme"
+import { Meme, MEME_ALIGNS, MEME_COLORS, MEME_FONTS, MEME_POSITIONS } from "../models/meme"
 import { useToast } from "@chakra-ui/react"
+import useSWR from "swr"
 
 
 type Props = {}
 
 const HomePage: NextPage<Props> = () => {
   const router = useRouter()
+  const {data: timeline} = useSWR("/search", (url) => search("#mame"))
 
-  // TODO: APIと接続
+  console.log(timeline)
+
   const memes = useMemo(() => {
-    return Array.from({length: 20}).map((dummy, index) => ({
-      image: `https://source.unsplash.com/random?sig=${index}`,
-      text: "This is an awesome meme!\nDon't you think so?\nSay YES!!!",
-      color: MEME_COLORS[Math.floor(Math.random() * MEME_COLORS.length)],
-      font: MEME_FONTS[Math.floor(Math.random() * MEME_FONTS.length)],
-      size: Math.floor(Math.random() * 60) + 40,
-      align: MEME_ALIGNS[Math.floor(Math.random() * MEME_ALIGNS.length)],
-      position: MEME_POSITIONS[Math.floor(Math.random() * MEME_POSITIONS.length)],
-      badges: []
-    }))
-  }, [])
+    return timeline?.search?.items?.map((item: any) => {
+      const image = item.metadata.media[0].original.url
+      const text = item.metadata.description
+      const rest = JSON.parse(item.metadata.attributes[0]?.value ?? "{}")
+      return {
+        image,
+        text,
+        color: rest.color ?? "#FFFFFF",
+        font: rest.font ?? "Anton",
+        size: rest.size ?? 70,
+        align: rest.align ?? "center",
+        position: rest.position ?? "flex-end",
+        badges: rest.badges ?? [],
+        authorName: item.profile.name
+      } as Meme & {authorName: string}
+    }) as Meme[] ?? []
+  }, [timeline])
 
   return (
     <AppContainer headerNode={<Header/>}>

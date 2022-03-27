@@ -101,7 +101,7 @@ const CreateMemePage: NextPage<Props> = () => {
 
     const meme = {image, text, color, font, size, align, position, badges} as Meme
     if (confirm("Are you sure to submit this meme?")) {
-      await createPost(image, text, [{"trait_type": "Data", "value": JSON.stringify({color, font, size, align, position, badges})}])
+      await createPost(image, text + "\n#mame", [{"trait_type": "Data", "value": JSON.stringify({color, font, size, align, position, badges})}])
       setCreatedMeme(meme)
       setIsModalOpen(true)
     }

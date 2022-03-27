@@ -24,7 +24,7 @@ export const DetailedMemePane: React.FC<Props> = ({
             textShadow={meme.color === "#000000" ? "borderBlackText" : "borderText"}
             lineHeight="shorter" whiteSpace="pre-wrap"
           >
-            {meme.text}
+            {meme.text.replace(/\n#mame$/, "")}
           </Text>
         </Flex>
       </Box>

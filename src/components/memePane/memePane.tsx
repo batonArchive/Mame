@@ -35,7 +35,7 @@ export const MemePane: React.FC<Props> = ({
             noOfLines={4}
             position="absolute"
           >
-            {meme.text}
+            {meme.text.replace(/\n#mame$/, "")}
           </Text>
         </Box>
       </AspectRatio>
