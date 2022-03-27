@@ -16,7 +16,6 @@ type Props = {}
 const SelectImagePage: NextPage<Props> = () => {
   const router = useRouter()
 
-  // TODO: APIと接続
   const images = [
     // "https://gateway.pinata.cloud/ipfs/QmRP3vYet19XAphJ5NmExeHqfryhUog497YdgWS8hLwAmG?filename=theme1.jpg",
     // "https://gateway.pinata.cloud/ipfs/QmRP3vYet19XAphJ5NmExeHqfryhUog497YdgWS8hLwAmG?filename=theme2.jpg",
