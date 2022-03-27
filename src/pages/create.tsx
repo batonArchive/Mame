@@ -115,7 +115,7 @@ const CreateMemePage: NextPage<Props> = () => {
   return (
     <AppContainer>
       <AspectRatio ratio={1}>
-        <Box rounded="xl" backgroundImage="url('https://source.unsplash.com/random')" backgroundSize="cover">
+        <Box rounded="xl" backgroundImage={`url('${image}')`} backgroundSize="cover">
           <Flex w="full" h="full" direction="column" align="stretch" justify={position}>
             <Editable
               p={4}

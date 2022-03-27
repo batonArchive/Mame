@@ -17,7 +17,18 @@ const SelectImagePage: NextPage<Props> = () => {
   const router = useRouter()
 
   // TODO: APIと接続
-  const images = Array.from({length: 20}).map((dummy, index) => `https://source.unsplash.com/random?sig=${index}`)
+  const images = [
+    "https://source.unsplash.com/2qOTf5qx2_4",
+    "https://source.unsplash.com/lh8ixHx94YQ",
+    "https://source.unsplash.com/s2MjR3xoJkE",
+    "https://source.unsplash.com/iCzxZ4dPz_0",
+    "https://source.unsplash.com/7rE4GFo0E9A",
+    "https://source.unsplash.com/1hdCX6QqGPo",
+    "https://source.unsplash.com/FtL07GM9Q7Y",
+    "https://source.unsplash.com/CVS4kWJaYLs",
+    "https://source.unsplash.com/_la-c2zrDlg",
+    "https://source.unsplash.com/02F5JVpW2Es",
+  ]
 
   return (
     <AppContainer headerNode={<Header/>}>
