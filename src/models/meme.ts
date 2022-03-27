@@ -12,6 +12,7 @@ export type MemePosition = (typeof MEME_POSITIONS)[number]
 export type MemeBadge = (typeof MEME_BADGES)[number]
 
 export type Meme = {
+  image: string,
   text: string,
   color: MemeColor,
   font: MemeFont,

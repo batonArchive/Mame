@@ -4,12 +4,19 @@ import { AppContainer } from "../components/appContainer"
 import {
   AspectRatio,
   Box,
+  Button,
   Editable,
   EditablePreview,
   EditableTextarea,
   Flex,
   Icon,
   IconButton,
+  Modal,
+  ModalBody,
+  ModalContent,
+  ModalFooter,
+  ModalHeader,
+  ModalOverlay,
   Slider,
   SliderFilledTrack,
   SliderThumb,
@@ -29,9 +36,21 @@ import {
   MdVerticalAlignCenter,
   MdVerticalAlignTop
 } from "react-icons/md"
-import NextLink from "next/link"
 import { useRouter } from "next/router"
-import { Meme, MemeAlign, MemeColor, MemeFont, MemePosition, MemeSize, MEME_ALIGNS, MEME_BADGES, MEME_COLORS, MEME_FONTS, MEME_POSITIONS } from "../models/meme"
+import {
+  Meme,
+  MemeAlign,
+  MemeColor,
+  MemeFont,
+  MemePosition,
+  MemeSize,
+  MEME_ALIGNS,
+  MEME_BADGES,
+  MEME_COLORS,
+  MEME_FONTS,
+  MEME_POSITIONS
+} from "../models/meme"
+import { DetailedMemePane } from "../components/memePane/detailedMemePane"
 
 
 type Props = {}
@@ -51,6 +70,9 @@ const CreateMemePage: NextPage<Props> = () => {
   const [size, setSize] = useState<MemeSize>(70)
   const [align, setAlign] = useState<MemeAlign>("center")
   const [position, setPosition] = useState<MemePosition>("flex-end")
+  
+  const [isModalOpen, setIsModalOpen] = useState(false)
+  const [createdMeme, setCreatedMeme] = useState<Meme | null>(null)
 
   const handleSubmit = useCallback(async () => {
     const badges = [...MEME_BADGES]
@@ -72,11 +94,18 @@ const CreateMemePage: NextPage<Props> = () => {
       badges.splice(Math.floor(Math.random() * badges.length), 1)
     }
 
-    const meme = {text, color, font, size, align, position, badges} as Meme
+    const meme = {image: "https://source.unsplash.com/random", text, color, font, size, align, position, badges} as Meme
     if (confirm("Are you sure to submit this meme?")) {
       // TODO: ポスト処理
+      setCreatedMeme(meme)
+      setIsModalOpen(true)
     }
   }, [text, color, font, size, align, position])
+
+  const handleModalClose = useCallback(() => {
+    setIsModalOpen(false)
+    router.push("/")
+  }, [router])
 
   return (
     <AppContainer>
@@ -214,6 +243,18 @@ const CreateMemePage: NextPage<Props> = () => {
           <></>
         )}
       </Box>
+      <Modal isOpen={isModalOpen} onClose={handleModalClose}>
+        <ModalOverlay/>
+        <ModalContent>
+          <ModalHeader>Submission Completed</ModalHeader>
+          <ModalBody>
+            {createdMeme && <DetailedMemePane meme={createdMeme}/>}
+          </ModalBody>
+          <ModalFooter>
+            <Button onClick={handleModalClose}>Close</Button>
+          </ModalFooter>
+        </ModalContent>
+      </Modal>
     </AppContainer>
   )
 }
