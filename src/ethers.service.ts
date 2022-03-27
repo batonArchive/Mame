@@ -14,9 +14,10 @@ export const getSigner = () => {
     return provider.getSigner();
 };
 
-export const getAddressFromSigner = () => {
-    const accounts = window.ethereum.request({method: "eth_requestAccounts"})
-    return accounts[0]
+export const getAddressFromSigner = async () => {
+    const accounts = await window.ethereum.request({method: "eth_requestAccounts"})
+    console.log(accounts)
+  return accounts[0]
 };
 
 export const signedTypeData = (

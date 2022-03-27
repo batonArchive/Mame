@@ -32,7 +32,7 @@ const createProfileRequest = (createProfileRequest: {
 };
 
 export const createProfile = async (handle: string) => {
-  const address = getAddressFromSigner();
+  const address = await getAddressFromSigner();
   console.log('create profile: address', address);
 
   const createProfileResult = await createProfileRequest({
