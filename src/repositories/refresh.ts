@@ -1,7 +1,7 @@
 import { gql } from "@apollo/client"
 import { apolloClient } from "../utils/apolloClient"
 import { login } from './login';
-import { getAccount } from "./ethers";
+import { getAddressFromSigner } from '../ethers.service';
 
 const REFRESH_AUTHENTICATION = `
   mutation($request: RefreshRequest!) { 
