@@ -344,10 +344,10 @@ export const getPublications = async (): Promise<Publications> => {
   const profileId = localStorage.getItem('profile_id') ?? "";
 
   const result = await getPublicationsRequest({
-    profileId: "0x01",
+    profileId: profileId,
     publicationTypes: ['POST'],
-    // limit: 10,
-    // sources: ["mame"]
+    limit: 10,
+    sources: ["mame"]
   });
   console.log('publications: result', result.data);
 

@@ -7,7 +7,7 @@ const client = create({
   protocol: 'https',
 });
 
-export const uploadIpfs = async (filePath: string, description: string) => {
+export const uploadIpfs = async (filePath: string, description: string, attributes: []) => {
   const result = await client.add(
     JSON.stringify({
       version: '1.0.0',
