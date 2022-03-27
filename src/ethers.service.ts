@@ -1,6 +1,5 @@
 import { TypedDataDomain, TypedDataField } from '@ethersproject/abstract-signer';
 import { ethers, utils, Wallet } from 'ethers';
-import { MUMBAI_RPC_URL, PK } from './config';
 import { omit } from './helpers';
 
 //export const ethersProvider = new ethers.providers.JsonRpcProvider(MUMBAI_RPC_URL);
@@ -21,8 +20,9 @@ export const getSigner = () => {
   //return new Wallet(PK, ethersProvider);
 };
 
-export const getAddressFromSigner = () => {
-    const accounts = window.ethereum.request({method: "eth_requestAccounts"})
+export const getAddressFromSigner = async () => {
+    const accounts = await window.ethereum.request({method: "eth_requestAccounts"})
+    console.log(accounts)
   return accounts[0]
   //return getSigner().address;
 };
