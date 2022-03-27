@@ -1,32 +1,43 @@
-import React, { useEffect, useRef, useState } from "react"
+import React, { useCallback, useEffect, useRef, useState } from "react"
 import { NextPage } from "next"
-import { login } from "../repositories/login"
-import { refresh } from "../repositories/refresh"
 import { AppContainer } from "../components/appContainer"
-import { AspectRatio, Avatar, Box, Button, Editable, EditablePreview, EditableTextarea, Flex, Icon, IconButton, SimpleGrid, Text, Textarea } from "@chakra-ui/react"
-import { MdCheck, MdClose, MdColorLens, MdFormatAlignCenter, MdFormatAlignLeft, MdFormatAlignRight, MdKeyboard, MdVerticalAlignBottom, MdVerticalAlignCenter, MdVerticalAlignTop } from "react-icons/md"
+import {
+  AspectRatio,
+  Box,
+  Editable,
+  EditablePreview,
+  EditableTextarea,
+  Flex,
+  Icon,
+  IconButton,
+  Slider,
+  SliderFilledTrack,
+  SliderThumb,
+  SliderTrack,
+  Text
+} from "@chakra-ui/react"
+import {
+  MdCheck,
+  MdClose,
+  MdColorLens,
+  MdFormatAlignCenter,
+  MdFormatAlignLeft,
+  MdFormatAlignRight,
+  MdFormatSize,
+  MdKeyboard,
+  MdVerticalAlignBottom,
+  MdVerticalAlignCenter,
+  MdVerticalAlignTop
+} from "react-icons/md"
 import NextLink from "next/link"
 import { useRouter } from "next/router"
-import { updateProfile } from "../repositories/update-profile"
-import { getProfile } from "../repositories/get-profiles"
-import { CreateHeader } from "../components/header"
+import { Meme, MemeAlign, MemeColor, MemeFont, MemePosition, MemeSize, MEME_ALIGNS, MEME_BADGES, MEME_COLORS, MEME_FONTS, MEME_POSITIONS } from "../models/meme"
 
 
 type Props = {}
 
 const MEME_ALIGN_ICONS = {"left": MdFormatAlignLeft, "center": MdFormatAlignCenter, "right": MdFormatAlignRight}
 const MEME_POSITION_ICONS = {"flex-start": MdVerticalAlignTop, "center": MdVerticalAlignCenter, "flex-end": MdVerticalAlignBottom}
-
-export const MEME_COLORS = ["#000000", "#EA414B", "#F19F37", "#FDFB53", "#68E144", "#73F7EC", "#367DF6", "#6639F6", "#EB54B1", "#FFFFFF"] as const
-export const MEME_FONTS = ["Anton", "Inter", "Josefin Sans", "Merriweather", "Pacifico"] as const
-export const MEME_ALIGNS = Object.keys(MEME_ALIGN_ICONS) as MemeAlign[]
-export const POSITIONS = Object.keys(MEME_POSITION_ICONS) as MemePosition[]
-
-export type MemeColor = (typeof MEME_COLORS)[number]
-export type MemeFont = (typeof MEME_FONTS)[number]
-export type MemeAlign = keyof typeof MEME_ALIGN_ICONS
-export type MemePosition = keyof typeof MEME_POSITION_ICONS
-
 type CreateMemeMode = "color" | "font" | "align" | "position"
 
 const CreateMemePage: NextPage<Props> = () => {
@@ -37,8 +48,35 @@ const CreateMemePage: NextPage<Props> = () => {
   const [text, setText] = useState("Type your text")
   const [color, setColor] = useState<MemeColor>("#FFFFFF")
   const [font, setFont] = useState<MemeFont>("Anton")
+  const [size, setSize] = useState<MemeSize>(70)
   const [align, setAlign] = useState<MemeAlign>("center")
   const [position, setPosition] = useState<MemePosition>("flex-end")
+
+  const handleSubmit = useCallback(async () => {
+    const badges = [...MEME_BADGES]
+    const random = Math.random()
+    if (random <= 1) {
+      badges.splice(Math.floor(Math.random() * badges.length), 1)
+      badges.splice(Math.floor(Math.random() * badges.length), 1)
+    }
+    if (random <= 0.99) {
+      badges.splice(Math.floor(Math.random() * badges.length), 1)
+    }
+    if (random <= 0.95) {
+      badges.splice(Math.floor(Math.random() * badges.length), 1)
+    }
+    if (random <= 0.85) {
+      badges.splice(Math.floor(Math.random() * badges.length), 1)
+    }
+    if (random < 0.6) {
+      badges.splice(Math.floor(Math.random() * badges.length), 1)
+    }
+
+    const meme = {text, color, font, size, align, position, badges} as Meme
+    if (confirm("Are you sure to submit this meme?")) {
+      // TODO: ポスト処理
+    }
+  }, [text, color, font, size, align, position])
 
   return (
     <AppContainer>
@@ -47,7 +85,7 @@ const CreateMemePage: NextPage<Props> = () => {
           <Flex w="full" h="full" direction="column" align="stretch" justify={position}>
             <Editable
               p={4}
-              fontSize="calc((100vw - 2rem) * 0.07)"
+              fontSize={`calc((100vw - 2rem) * ${size} / 1000)`}
               fontWeight="bold"
               fontFamily={font}
               color={color}
@@ -93,7 +131,7 @@ const CreateMemePage: NextPage<Props> = () => {
           />
         </Flex>
         <Box>
-          <IconButton icon={<MdCheck/>} size="sm" variant="ghost" aria-label="confirm"/>
+          <IconButton icon={<MdCheck/>} size="sm" variant="ghost" aria-label="confirm" onClick={handleSubmit}/>
         </Box>
       </Flex>
       <Box mt={4}>
@@ -115,24 +153,35 @@ const CreateMemePage: NextPage<Props> = () => {
             ))}
           </Flex>
         ) : (mode === "font") ? (
-          <Flex gap={3} justify="center">
-            {MEME_FONTS.map((candFont) => (
-              <Flex key={candFont} direction="column" align="center">
-                <Box w={1} h={1} mb={1} background={candFont === font ? "background.white" : undefined} rounded="full"/>
-                <Box
-                  w={9} h={9}
-                  color={candFont === font ? "text.black" : "text.white"}
-                  background={candFont === font ? "background.white" : "background.pale"}
-                  fontFamily={candFont}
-                  rounded="full"
-                  as="button"
-                  onClick={() => setFont(candFont)} 
-                >
-                  Aa
-                </Box>
-              </Flex>
-            ))}
-          </Flex>
+          <Box>
+            <Flex gap={3} justify="center">
+              {MEME_FONTS.map((candFont) => (
+                <Flex key={candFont} direction="column" align="center">
+                  <Box w={1} h={1} mb={1} background={candFont === font ? "background.white" : undefined} rounded="full"/>
+                  <Box
+                    w={9} h={9}
+                    color={candFont === font ? "text.black" : "text.white"}
+                    background={candFont === font ? "background.white" : "background.pale"}
+                    fontFamily={candFont}
+                    rounded="full"
+                    as="button"
+                    onClick={() => setFont(candFont)} 
+                  >
+                    Aa
+                  </Box>
+                </Flex>
+              ))}
+            </Flex>
+            <Flex mt={4} mx={6}>
+              <Icon mr={4} as={MdFormatSize}/>
+              <Slider min={40} max={100} value={size} onChange={setSize}>
+                <SliderTrack>
+                  <SliderFilledTrack/>
+                </SliderTrack>
+                <SliderThumb/>
+              </Slider>
+            </Flex>
+          </Box>
         ) : (mode === "align") ? (
           <Flex gap={3} justify="center">
             {MEME_ALIGNS.map((candAlign) => (
@@ -149,7 +198,7 @@ const CreateMemePage: NextPage<Props> = () => {
           </Flex>
         ) : (mode === "position") ? (
           <Flex gap={3} justify="center">
-            {POSITIONS.map((candPosition) => (
+            {MEME_POSITIONS.map((candPosition) => (
               <Flex key={candPosition} direction="column" align="center">
                 <Box w={1} h={1} mb={1} background={candPosition === position ? "background.white" : undefined} rounded="full"/>
                 <Icon
