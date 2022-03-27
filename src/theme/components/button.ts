@@ -17,7 +17,7 @@ const button: ComponentStyleConfig = {
             },
           },
           _active: {
-            background: `gray.200`,
+            background: `gray.100`,
           },
         }
       } else {
@@ -31,7 +31,7 @@ const button: ComponentStyleConfig = {
             },
           },
           _active: {
-            background: `${props.colorScheme}.300`,
+            background: `${props.colorScheme}.400`,
           },
         }
       }
@@ -46,7 +46,7 @@ const button: ComponentStyleConfig = {
         },
       },
       _active: {
-        bg: transparentize(`${props.colorScheme}.200`, 0.25)(props),
+        bg: transparentize(`${props.colorScheme}.200`, 0.12)(props),
       },
     }),
   },

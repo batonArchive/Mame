@@ -14,6 +14,18 @@ import { MemePane } from "../components/memePane"
 type Props = {}
 
 const ProfilePage: NextPage<Props> = () => {
+  // TODO: APIと接続
+  const memes = Array.from({length: 20}).map((dummy, index) => ({
+    image: `https://source.unsplash.com/random?sig=${index}`,
+    text: "This is an awesome meme!\nDon't you think so?\nSay YES!!!",
+    color: "#FFFFFF" as const,
+    font: "Anton" as const,
+    size: 70,
+    align: "center" as const,
+    position: "flex-end" as const,
+    badges: [],
+  }))
+
   return (
     <AppContainer headerNode={<Header/>}>
       <Flex mb={-2} justify="space-between">
@@ -41,8 +53,8 @@ const ProfilePage: NextPage<Props> = () => {
         Michael Jackson
       </Box>
       <SimpleGrid mt={4} gap={2} templateColumns="repeat(2, 1fr)">
-        {Array.from({length: 20}).map((dummy, index) => (
-          <MemePane key={index} imageUrl={`https://source.unsplash.com/random?sig=${index}`} text={"Hello!\nHello, hello, hello!\nVery much hello!\nHello!\nFifth"}/>
+        {memes.map((meme, index) => (
+          <MemePane key={index} meme={meme}/>
         ))}
       </SimpleGrid>
       <PlusButton/>

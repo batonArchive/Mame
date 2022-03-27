@@ -120,10 +120,11 @@ const CreateMemePage: NextPage<Props> = () => {
               color={color}
               textAlign={align}
               textShadow={color === "#000000" ? "borderBlackText" : "borderText"}
+              lineHeight="shorter" whiteSpace="pre-wrap"
               value={text} onChange={setText}
             >
-              <EditablePreview w="full" h="full" lineHeight="shorter" whiteSpace="pre" ref={inputRef}/>
-              <EditableTextarea lineHeight="shorter" textShadow="inherit" minW="full" minH="full" resize="none"/>
+              <EditablePreview w="full" h="full" ref={inputRef}/>
+              <EditableTextarea lineHeight="inherit" textShadow="inherit" minW="full" minH="full" resize="none"/>
             </Editable>
           </Flex>
         </Box>
@@ -246,7 +247,7 @@ const CreateMemePage: NextPage<Props> = () => {
       <Modal isOpen={isModalOpen} onClose={handleModalClose} isCentered={true}>
         <ModalOverlay/>
         <ModalContent>
-          <ModalHeader>Submission Completed</ModalHeader>
+          <ModalHeader>Submission completed</ModalHeader>
           <ModalBody>
             {createdMeme && <DetailedMemePane meme={createdMeme}/>}
           </ModalBody>

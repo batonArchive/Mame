@@ -15,6 +15,7 @@ import { timeline } from "../repositories/user-timeline"
 import { PlusButton } from "../components/plusButton"
 import { Header } from "../components/header"
 import { MemePane } from "../components/memePane"
+import { MEME_ALIGNS, MEME_COLORS, MEME_FONTS, MEME_POSITIONS } from "../models/meme"
 
 
 type Props = {}
@@ -28,11 +29,23 @@ const HomePage: NextPage<Props> = () => {
   useEffect(() => {
   }, [])
 
+  // TODO: APIと接続
+  const memes = Array.from({length: 20}).map((dummy, index) => ({
+    image: `https://source.unsplash.com/random?sig=${index}`,
+    text: "This is an awesome meme!\nDon't you think so?\nSay YES!!!",
+    color: MEME_COLORS[Math.floor(Math.random() * MEME_COLORS.length)],
+    font: MEME_FONTS[Math.floor(Math.random() * MEME_FONTS.length)],
+    size: Math.floor(Math.random() * 60) + 40,
+    align: MEME_ALIGNS[Math.floor(Math.random() * MEME_ALIGNS.length)],
+    position: MEME_POSITIONS[Math.floor(Math.random() * MEME_POSITIONS.length)],
+    badges: [],
+  }))
+
   return (
     <AppContainer headerNode={<Header/>}>
       <SimpleGrid gap={2} templateColumns="repeat(2, 1fr)">
-        {Array.from({length: 20}).map((dummy, index) => (
-          <MemePane key={index} imageUrl={`https://source.unsplash.com/random?sig=${index}`} text={"Hello!\nHello, hello, hello!\nVery much hello!\nHello!\nFifth"}/>
+        {memes.map((meme, index) => (
+          <MemePane key={index} meme={meme}/>
         ))}
       </SimpleGrid>
       <PlusButton/>

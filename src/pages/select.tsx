@@ -16,13 +16,22 @@ type Props = {}
 const SelectImagePage: NextPage<Props> = () => {
   const router = useRouter()
 
+  // TODO: APIと接続
+  const images = Array.from({length: 20}).map((dummy, index) => `https://source.unsplash.com/random?sig=${index}`)
+
   return (
     <AppContainer headerNode={<Header/>}>
+      <Box mb={4} fontSize="xl" fontWeight="bold" textAlign="center">
+        Select your image
+      </Box>
       <SimpleGrid gap={2} templateColumns="repeat(3, 1fr)">
-        {Array.from({length: 20}).map((dummy, index) => (
+        {images.map((image, index) => (
           <AspectRatio ratio={120 / 98} key={index}>
-            <Box rounded="lg" backgroundImage={`url('https://source.unsplash.com/random?sig=${index}')`} backgroundSize="cover" onClick={() => router.push("/create")}>              
-            </Box>
+            <Box
+              rounded="lg"
+              backgroundImage={`url('${image}')`} backgroundSize="cover"
+              onClick={() => router.push("/create")}
+            />
           </AspectRatio>
         ))}
       </SimpleGrid>

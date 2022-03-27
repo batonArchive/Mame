@@ -22,6 +22,7 @@ export const DetailedMemePane: React.FC<Props> = ({
             color={meme.color}
             textAlign={meme.align}
             textShadow={meme.color === "#000000" ? "borderBlackText" : "borderText"}
+            lineHeight="shorter" whiteSpace="pre-wrap"
           >
             {meme.text}
           </Text>
