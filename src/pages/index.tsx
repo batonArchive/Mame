@@ -1,4 +1,4 @@
-import React, { useEffect } from "react"
+import React, { useEffect, useMemo } from "react"
 import { NextPage } from "next"
 import { login } from "../repositories/login"
 import { refresh } from "../repositories/refresh"
@@ -43,18 +43,19 @@ const HomePage: NextPage<Props> = () => {
     }
   })
 
-  
   // TODO: APIと接続
-  const memes = Array.from({length: 20}).map((dummy, index) => ({
-    image: `https://source.unsplash.com/random?sig=${index}`,
-    text: "This is an awesome meme!\nDon't you think so?\nSay YES!!!",
-    color: MEME_COLORS[Math.floor(Math.random() * MEME_COLORS.length)],
-    font: MEME_FONTS[Math.floor(Math.random() * MEME_FONTS.length)],
-    size: Math.floor(Math.random() * 60) + 40,
-    align: MEME_ALIGNS[Math.floor(Math.random() * MEME_ALIGNS.length)],
-    position: MEME_POSITIONS[Math.floor(Math.random() * MEME_POSITIONS.length)],
-    badges: [],
-  }))
+  const memes = useMemo(() => {
+    return Array.from({length: 20}).map((dummy, index) => ({
+      image: `https://source.unsplash.com/random?sig=${index}`,
+      text: "This is an awesome meme!\nDon't you think so?\nSay YES!!!",
+      color: MEME_COLORS[Math.floor(Math.random() * MEME_COLORS.length)],
+      font: MEME_FONTS[Math.floor(Math.random() * MEME_FONTS.length)],
+      size: Math.floor(Math.random() * 60) + 40,
+      align: MEME_ALIGNS[Math.floor(Math.random() * MEME_ALIGNS.length)],
+      position: MEME_POSITIONS[Math.floor(Math.random() * MEME_POSITIONS.length)],
+      badges: []
+    }))
+  }, [])
 
   return (
     <AppContainer headerNode={<Header/>}>

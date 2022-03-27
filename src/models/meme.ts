@@ -19,5 +19,6 @@ export type Meme = {
   size: MemeSize,
   align: MemeAlign,
   position: MemePosition,
-  badges: MemeBadge[]
+  badges: MemeBadge[],
+  authorName?: string
 }

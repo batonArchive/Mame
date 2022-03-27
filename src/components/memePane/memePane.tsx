@@ -1,4 +1,5 @@
 import { AspectRatio, Avatar, Box, Button, Flex, Icon, Modal, ModalBody, ModalContent, ModalFooter, ModalHeader, ModalOverlay, Text } from "@chakra-ui/react"
+import Image from "next/image"
 import { useState } from "react"
 import { MdApps, MdEdit, MdFavoriteBorder } from "react-icons/md"
 import { Meme } from "../../models/meme"
@@ -18,6 +19,14 @@ export const MemePane: React.FC<Props> = ({
     <>
       <AspectRatio ratio={1} onClick={() => setIsModalOpen(true)}>
         <Box rounded="lg" backgroundImage={`url('${meme.image}')`} backgroundSize="cover" position="relative">
+          <Flex
+            left={2} top={2} gap={1}
+            position="absolute"
+          >
+            {meme.badges.map((badge) => (
+              <Image width={24} height={24} key={badge} src={`/badge/${badge}.svg`} alt={`badge ${badge}`}/>
+            ))}
+          </Flex>
           <Text
             left={2} bottom={2}
             fontSize="sm" lineHeight="shorter"
@@ -37,7 +46,7 @@ export const MemePane: React.FC<Props> = ({
             <Flex w="full" justify="space-between">
               <Flex align="center">
                 <Avatar mr={2} size="sm"/>
-                <Text fontSize="md">Michael Jackson</Text>
+                <Text fontSize="md">{meme.authorName}</Text>
               </Flex>
               <Flex align="center">
                 <Text fontSize="md" fontWeight="normal">1982</Text>
