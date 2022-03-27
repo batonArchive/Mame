@@ -37,7 +37,7 @@ export const MemePane: React.FC<Props> = ({
             <Flex w="full" justify="space-between">
               <Flex align="center">
                 <Avatar mr={2} size="sm"/>
-                <Text fontSize="md">Michael Jackson</Text>
+                <Text fontSize="md">{meme.authorName}</Text>
               </Flex>
               <Flex align="center">
                 <Text fontSize="md" fontWeight="normal">1982</Text>

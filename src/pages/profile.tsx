@@ -34,8 +34,9 @@ const ProfilePage: NextPage<Props> = () => {
         size: rest.size ?? 70,
         align: rest.align ?? "center",
         position: rest.position ?? "flex-end",
-        badges: rest.badges ?? []
-      } as Meme
+        badges: rest.badges ?? [],
+        authorName: item.profile.name
+      } as Meme & {authorName: string}
     }) ?? []
   }, [timeline])
 
