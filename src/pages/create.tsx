@@ -115,7 +115,7 @@ const CreateMemePage: NextPage<Props> = () => {
   return (
     <AppContainer>
       <AspectRatio ratio={1}>
-        <Box rounded="xl" backgroundImage="url('https://source.unsplash.com/random')" backgroundSize="cover">
+        <Box rounded="xl" backgroundImage={`url('${image}')`} backgroundSize="cover">
           <Flex w="full" h="full" direction="column" align="stretch" justify={position}>
             <Editable
               p={4}
@@ -155,12 +155,12 @@ const CreateMemePage: NextPage<Props> = () => {
             onClick={() => setMode("font")}
           />
           <IconButton 
-            icon={<MdFormatAlignCenter/>}
+            icon={React.createElement(MEME_ALIGN_ICONS[align])}
             size="sm" variant="ghost" aria-label="align"
             onClick={() => setMode("align")}
           />
           <IconButton 
-            icon={<MdVerticalAlignCenter/>}
+            icon={React.createElement(MEME_POSITION_ICONS[position])}
             size="sm" variant="ghost" aria-label="position"
             onClick={() => setMode("position")}
           />

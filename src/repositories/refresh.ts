@@ -24,14 +24,9 @@ const refreshAuth = (refreshToken: string) => {
 };
 
 export const refresh = async () => {
-  const address = await getAccount();
-  console.log('refresh: address', address);
-
-  const accessTokens = await login();
-  console.log(accessTokens);
-
+  const refreshToken = localStorage.getItem('refresh_token')!
   const newAccessToken = await refreshAuth(
-    accessTokens.refreshToken
+    refreshToken
   );
 
   localStorage.setItem('auth_token', newAccessToken.data.refresh.accessToken);
