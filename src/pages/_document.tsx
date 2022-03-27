@@ -12,7 +12,7 @@ class Document extends NextDocument {
         <Head>
           <title>{TITLE}</title>
           <meta name="description" content={DESCRIPTION} />
-          <meta property="og:url" content="http://learninganimals.io" />
+          <meta property="og:url" content="https://main.dmfb2wayly80h.amplifyapp.com/" />
           <meta property="og:title" content={TITLE} />
           <meta property="og:site_name" content={TITLE} />
           <meta property="og:description" content={DESCRIPTION} />

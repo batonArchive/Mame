@@ -16,20 +16,20 @@ const App: React.FC<Props> = ({ Component, pageProps }) => {
   const router = useRouter()
   const toast = useToast()
   useEffect(() => {
-    const provider = (window as any).ethereum
-    if (!provider) {
-      toast({title: "Metamask is not installed, please install!", status: "error", position: "top"})
-    } else {
-      const chainId = provider.request({ method: "eth_chainId" });
-      const testChainId = '0x13881'
-      if (chainId !== testChainId) {
-        try {
-          provider.request({method: 'wallet_switchEthereumChain', params: [{ chainId: testChainId}]});
-        } catch (switchError) {
-          toast({title: "Failed to switch to the network", status: "error", position: "top"})
-        }
-      }
-    }
+    // const provider = (window as any).ethereum
+    // if (!provider) {
+    //   toast({title: "Metamask is not installed, please install!", status: "error", position: "top"})
+    // } else {
+    //   const chainId = provider.request({ method: "eth_chainId" });
+    //   const testChainId = '0x13881'
+    //   if (chainId !== testChainId) {
+    //     try {
+    //       provider.request({method: 'wallet_switchEthereumChain', params: [{ chainId: testChainId}]});
+    //     } catch (switchError) {
+    //       toast({title: "Failed to switch to the network", status: "error", position: "top"})
+    //     }
+    //   }
+    // }
   }, [router, toast])
   useEffect(() => {
     (async () => {
