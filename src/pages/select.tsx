@@ -18,6 +18,13 @@ const SelectImagePage: NextPage<Props> = () => {
 
   // TODO: APIと接続
   const images = [
+    // "https://gateway.pinata.cloud/ipfs/QmRP3vYet19XAphJ5NmExeHqfryhUog497YdgWS8hLwAmG?filename=theme1.jpg",
+    // "https://gateway.pinata.cloud/ipfs/QmRP3vYet19XAphJ5NmExeHqfryhUog497YdgWS8hLwAmG?filename=theme2.jpg",
+    // "https://gateway.pinata.cloud/ipfs/QmRP3vYet19XAphJ5NmExeHqfryhUog497YdgWS8hLwAmG?filename=theme3.jpg",
+    // "https://gateway.pinata.cloud/ipfs/QmRP3vYet19XAphJ5NmExeHqfryhUog497YdgWS8hLwAmG?filename=theme4.jpg",
+    // "https://gateway.pinata.cloud/ipfs/QmRP3vYet19XAphJ5NmExeHqfryhUog497YdgWS8hLwAmG?filename=theme5.jpg",
+    // "https://gateway.pinata.cloud/ipfs/QmRP3vYet19XAphJ5NmExeHqfryhUog497YdgWS8hLwAmG?filename=theme6.jpg",
+    // "https://gateway.pinata.cloud/ipfs/QmRP3vYet19XAphJ5NmExeHqfryhUog497YdgWS8hLwAmG?filename=theme7.jpg",
     "https://source.unsplash.com/2qOTf5qx2_4",
     "https://source.unsplash.com/lh8ixHx94YQ",
     "https://source.unsplash.com/s2MjR3xoJkE",
