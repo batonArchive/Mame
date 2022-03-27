@@ -17,7 +17,7 @@ export const uploadIpfs = async (filePath: string, description: string, attribut
       image: null,
       imageMimeType: null,
       name: 'Name',
-      attributes: [],
+      attributes,
       media: [
         {
           item: filePath,
