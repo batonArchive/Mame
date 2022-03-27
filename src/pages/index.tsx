@@ -46,7 +46,7 @@ const HomePage: NextPage<Props> = () => {
         badges: rest.badges ?? [],
         authorName: item.profile.name
       } as Meme & {authorName: string}
-    }) as Meme[] ?? []
+    }).reverse() as Meme[] ?? []
   }, [timeline])
 
   return (
