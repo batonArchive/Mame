@@ -50,7 +50,7 @@ const createPostTypedData = (createPostTypedDataRequest: any) => {
 
 // filePath: あらかじめ用意したお題画像のURL, description: キャプション文言, そのほかはattributesにkey:valueで入れる。
 // 作ったjson https://ipfs.io/ipfs/{ipfsResult.path}
-export const createPost = async (filePath: string, description: string, attributes: []) => {
+export const createPost = async (filePath: string, description: string, attributes: any[]) => {
     const profileId = localStorage.getItem('profile_id');
     const ipfsResult = await uploadIpfs(filePath, description, attributes);
     console.log('create post: ipfs result', ipfsResult);
