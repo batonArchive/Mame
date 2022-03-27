@@ -136,7 +136,7 @@ const CreateMemePage: NextPage<Props> = () => {
       </AspectRatio>
       <Flex mx={-4} mt={4} px={4} py={2} background="background.pale" justify="space-between">
         <Box>
-          <IconButton icon={<MdClose/>} size="sm" variant="ghost" aria-label="back" onClick={() => router.push("/")}/>
+          <IconButton icon={<MdClose/>} size="sm" variant="ghost" aria-label="back" onClick={() => router.back()}/>
         </Box>
         <Flex gap={2}>
           <IconButton
