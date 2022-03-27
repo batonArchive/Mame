@@ -155,12 +155,12 @@ const CreateMemePage: NextPage<Props> = () => {
             onClick={() => setMode("font")}
           />
           <IconButton 
-            icon={<MdFormatAlignCenter/>}
+            icon={React.createElement(MEME_ALIGN_ICONS[align])}
             size="sm" variant="ghost" aria-label="align"
             onClick={() => setMode("align")}
           />
           <IconButton 
-            icon={<MdVerticalAlignCenter/>}
+            icon={React.createElement(MEME_POSITION_ICONS[position])}
             size="sm" variant="ghost" aria-label="position"
             onClick={() => setMode("position")}
           />
