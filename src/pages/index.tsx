@@ -12,6 +12,7 @@ import { createPost } from "../repositories/post"
 import { getPublications } from "../repositories/get-publications"
 import { createProfile } from "../repositories/create-profile"
 import { timeline } from "../repositories/user-timeline"
+import { search } from "../repositories/search-profiles-or-publications"
 import { PlusButton } from "../components/plusButton"
 import { Header } from "../components/header"
 import { MemePane } from "../components/memePane"
@@ -27,6 +28,8 @@ type Props = {}
 const HomePage: NextPage<Props> = () => {
   const router = useRouter()
   useEffect(() => {
+    //createPost("vvvv", "aaaa")
+    getPublications()
   }, [])
 
   // TODO: APIと接続

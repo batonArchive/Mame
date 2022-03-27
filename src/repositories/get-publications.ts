@@ -342,10 +342,12 @@ const getPublicationsRequest = (getPublicationQuery: any) => {
 
 export const getPublications = async (): Promise<Publications> => {
   const profileId = localStorage.getItem('profile_id') ?? "";
+
   const result = await getPublicationsRequest({
-    profileId: profileId,
-    publicationTypes: ['POST', 'COMMENT', 'MIRROR'],
-    limit: 10
+    profileId: "0x01",
+    publicationTypes: ['POST'],
+    // limit: 10,
+    // sources: ["mame"]
   });
   console.log('publications: result', result.data);
 
