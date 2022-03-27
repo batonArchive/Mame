@@ -3,7 +3,7 @@ import { apolloClient } from "../utils/apolloClient"
 import { uploadIpfs } from '../ipfs';
 import { pollUntilIndexed } from '../indexer/has-transaction-been-indexed';
 import { getAddressFromSigner, getSigner, signedTypeData, splitSignature } from '../ethers.service';
-import { lensHub } from '../lens-hub';
+import { getLensHub } from '../lens-hub';
 import { BigNumber, utils } from 'ethers';
 
 const CREATE_POST_TYPED_DATA = `
@@ -75,7 +75,7 @@ export const createPost = async (filePath: string, description: string, attribut
 
   const { v, r, s } = splitSignature(signature);
 
-  const tx = await lensHub.postWithSig({
+  const tx = await getLensHub().postWithSig({
     profileId: typedData.value.profileId,
     contentURI: typedData.value.contentURI,
     collectModule: typedData.value.collectModule,
