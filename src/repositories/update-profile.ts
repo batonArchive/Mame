@@ -19,7 +19,7 @@ const updateProfileRequest = (profileInfo: any) => {
   });
 };
 
-export const updateProfile = async (name: string, bio: string, location: string, website: string, twitterUrl: string, coverPicture: string) => {
+export const updateProfile = async (name: string, bio: string) => {
   const address = await getAccount();
   console.log('update profile: address', address);
 
@@ -29,10 +29,6 @@ export const updateProfile = async (name: string, bio: string, location: string,
     profileId,
     name: name,
     bio: bio,
-    location: location,
-    website: website,
-    twitterUrl: twitterUrl,
-    coverPicture: coverPicture,
   });
 
 };

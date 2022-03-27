@@ -249,7 +249,7 @@ const CreateMemePage: NextPage<Props> = () => {
           <></>
         )}
       </Box>
-      <Modal isOpen={isModalOpen} onClose={handleModalClose} isCentered={true}>
+      <Modal size="fullWidth" isOpen={isModalOpen} onClose={handleModalClose} isCentered={true}>
         <ModalOverlay/>
         <ModalContent>
           <ModalHeader>Submission completed</ModalHeader>
