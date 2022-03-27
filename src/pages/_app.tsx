@@ -2,7 +2,6 @@ import React, { useEffect } from "react"
 import { AppInitialProps, AppProps } from "next/app"
 import { ChakraProvider, useToast } from "@chakra-ui/react"
 import theme from "../theme"
-import Head from "next/head"
 import { login } from "../repositories/login"
 import { refresh } from "../repositories/refresh"
 import { createProfile } from "../repositories/create-profile"
@@ -18,7 +17,7 @@ const App: React.FC<Props> = ({ Component, pageProps }) => {
   useEffect(() => {
     const provider = (window as any).ethereum
     if (!provider) {
-      toast({title: "Metamask is not installed, please install!", status: "error", position: "top"})
+      alert("Metamask is not installed, please install!")
     } else {
       const chainId = provider.request({ method: "eth_chainId" });
       const testChainId = '0x13881'
