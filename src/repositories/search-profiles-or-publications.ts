@@ -295,7 +295,7 @@ fragment CommentMirrorOfFields on Comment {
 }
 `;
 
-const searchRequest = (request: { query:string, type: string }) => {
+const searchRequest = (request: { query:string, type: string, sources: [string] }) => {
   return apolloClient.query({
     query: gql(SEARCH),
     variables: {
@@ -308,6 +308,7 @@ export const search = async (query: string) => {
   const result = await searchRequest({
     query: query,
     type: 'PUBLICATION',
+    sources: ["mame"]
   });
   console.log('search: result', result.data);
 
